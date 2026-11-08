@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Code2, BrainCircuit, Layout, Server, Cpu, CheckCircle } from 'lucide-react';
+import { BarChart3, Database, Code2, BrainCircuit, CheckCircle, Cpu, TrendingUp } from 'lucide-react';
 import { SKILL_CATEGORIES } from '../data/portfolioData';
 
 export const Skills: React.FC = () => {
@@ -7,14 +7,14 @@ export const Skills: React.FC = () => {
 
   const getIcon = (iconName: string) => {
     switch (iconName) {
+      case 'BarChart3':
+        return <BarChart3 className="w-5 h-5" />;
+      case 'Database':
+        return <Database className="w-5 h-5" />;
       case 'Code2':
         return <Code2 className="w-5 h-5" />;
       case 'BrainCircuit':
         return <BrainCircuit className="w-5 h-5" />;
-      case 'Layout':
-        return <Layout className="w-5 h-5" />;
-      case 'Server':
-        return <Server className="w-5 h-5" />;
       default:
         return <Cpu className="w-5 h-5" />;
     }
@@ -27,14 +27,14 @@ export const Skills: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-xs font-semibold text-blue-400 mb-3">
-            <Cpu className="w-3.5 h-3.5" />
-            Technical Arsenal
+            <TrendingUp className="w-3.5 h-3.5" />
+            Analytics & BI Capabilities
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Skills, Tools & <span className="gradient-text">Proficiencies</span>
+            Data Tools, Languages & <span className="gradient-text">Statistical Expertise</span>
           </h2>
           <p className="text-slate-400 mt-3 text-sm sm:text-base">
-            Engineered through coursework at Indus University, enterprise projects, and real-world deployments.
+            From SQL database queries and Python data wrangling to Power BI DAX formulas and machine learning models.
           </p>
 
           {/* Category Tabs */}
@@ -90,26 +90,26 @@ export const Skills: React.FC = () => {
           ))}
         </div>
 
-        {/* Soft Skills & Core Strengths Bar */}
+        {/* Analytical Competencies Bar */}
         <div className="mt-12 p-6 rounded-2xl bg-[#0b1120] border border-slate-800 max-w-4xl mx-auto">
           <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 text-center sm:text-left">
-            Core Engineering Strengths & Mindset
+            Core Analytical & Business Mindset
           </h4>
           <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2.5">
             {[
-              'Object-Oriented Programming (OOP)',
-              'Data Structures & Algorithms',
-              'End-to-End ML Pipeline Architecture',
-              'Cross-Platform UI/UX',
-              'Analytical Problem Solving',
-              'Team Leadership & Communication',
-              'Agile Collaboration'
+              'Cohort Retention & Churn Analysis',
+              'A/B Testing & Hypothesis Formulation',
+              'Dimensional Data Modeling (Star/Snowflake)',
+              'Executive Storytelling & Data Presentation',
+              'Anomaly & Outlier Isolation (IQR)',
+              'Revenue Velocity & Margin Decomposition',
+              'Automated ETL & Data Cleansing Pipelines'
             ].map((strength, sId) => (
               <span
                 key={sId}
                 className="text-xs px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700 text-slate-300 font-medium hover:border-cyan-500/40 hover:text-white transition"
               >
-                ✓ {strength}
+                📊 {strength}
               </span>
             ))}
           </div>

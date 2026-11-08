@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Download, Mail, MapPin, Sparkles, MessageSquare } from 'lucide-react';
+import { ArrowRight, Download, Mail, MapPin, Sparkles, MessageSquare, BarChart2, Database, TrendingUp } from 'lucide-react';
 import { PERSONAL_INFO, HIGHLIGHT_STATS } from '../data/portfolioData';
 import { GithubIcon, LinkedinIcon } from './Icons';
 
@@ -8,7 +8,7 @@ export const Hero: React.FC = () => {
     <section id="about" className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
       {/* Background Glow Orbs */}
       <div className="glow-ambient w-96 h-96 bg-cyan-500 top-10 left-1/4 -translate-x-1/2" />
-      <div className="glow-ambient w-96 h-96 bg-purple-600 top-32 right-10" />
+      <div className="glow-ambient w-96 h-96 bg-blue-600 top-32 right-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -18,7 +18,7 @@ export const Hero: React.FC = () => {
             {/* Availability Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-cyan-500/30 text-xs font-medium text-cyan-300 shadow-inner">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-              <span>Available for Software Engineering & AI Opportunities</span>
+              <span>Available for Data Analyst & Business Intelligence Opportunities</span>
             </div>
 
             {/* Main Heading */}
@@ -26,15 +26,15 @@ export const Hero: React.FC = () => {
               Hi, I'm <span className="gradient-text">{PERSONAL_INFO.name}</span>
               <br />
               <span className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-slate-300">
-                Engineering <span className="text-white underline decoration-cyan-400 decoration-wavy decoration-2">Intelligent Systems</span> & Scalable Web
+                Transforming <span className="text-white underline decoration-cyan-400 decoration-wavy decoration-2">Complex Data</span> Into Actionable Business Intelligence
               </span>
             </h1>
 
             {/* Subheading / Bio */}
             <p className="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              Computer Engineering student at <strong>Indus University</strong> with hands-on expertise in 
-              <strong> Machine Learning, Full-Stack Development (React/Node.js), and Flutter</strong>. 
-              Passionate about turning complex algorithms and large datasets into high-performance, real-world digital solutions.
+              Computer Engineering student at <strong>Indus University</strong> with strong technical skills in 
+              <strong> Python, SQL, Power BI, Advanced Excel, and Machine Learning</strong>. 
+              Experienced in structuring messy data, conducting rigorous exploratory data analysis (EDA), and delivering interactive dashboards that drive executive decision-making.
             </p>
 
             {/* Location & Quick Meta */}
@@ -45,8 +45,8 @@ export const Hero: React.FC = () => {
               </span>
               <span className="hidden sm:inline text-slate-700">•</span>
               <span className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-cyan-400" />
-                Indus University (CGPA 8.89/10)
+                <Database className="w-3.5 h-3.5 text-blue-400" />
+                Specialization: Data Mining & DBMS (CGPA 8.89/10)
               </span>
             </div>
 
@@ -56,7 +56,7 @@ export const Hero: React.FC = () => {
                 href="#projects"
                 className="flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-semibold text-sm shadow-xl shadow-cyan-500/25 transition-all hover:scale-105 active:scale-95"
               >
-                Explore Projects
+                Explore Analytics Work
                 <ArrowRight className="w-4 h-4" />
               </a>
 
@@ -66,7 +66,7 @@ export const Hero: React.FC = () => {
                 className="flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-cyan-400 text-slate-200 hover:text-white font-semibold text-sm transition-all hover:scale-105 active:scale-95"
               >
                 <Download className="w-4 h-4 text-cyan-400" />
-                Download CV
+                Download Data Analyst CV
               </a>
 
               <a
@@ -105,7 +105,7 @@ export const Hero: React.FC = () => {
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
             <div className="relative w-full max-w-sm sm:max-w-md">
               {/* Outer decorative gradient glow */}
-              <div className="absolute -inset-1.5 bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-600 rounded-3xl blur-xl opacity-40 group-hover:opacity-100 transition duration-1000 animate-pulse-slow" />
+              <div className="absolute -inset-1.5 bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-600 rounded-3xl blur-xl opacity-40 group-hover:opacity-100 transition duration-1000 animate-pulse-slow" />
               
               <div className="relative bg-[#0c1220] border border-white/10 rounded-2xl p-6 shadow-2xl backdrop-blur-xl">
                 {/* Photo & Badge */}
@@ -127,15 +127,15 @@ export const Hero: React.FC = () => {
                     <h3 className="text-xl font-bold text-white">{PERSONAL_INFO.name}</h3>
                     <Sparkles className="w-4 h-4 text-cyan-400" />
                   </div>
-                  <p className="text-xs text-cyan-400 font-mono mt-0.5">Computer Engineering @ Indus Uni</p>
+                  <p className="text-xs text-cyan-400 font-mono mt-0.5">Data Analyst & BI Specialist</p>
                   
-                  {/* Quick skill pills */}
+                  {/* Data Analyst skill pills */}
                   <div className="flex flex-wrap justify-center gap-1.5 mt-3 pt-3 border-t border-slate-800">
-                    <span className="px-2.5 py-1 text-[11px] rounded-md bg-slate-800 text-slate-300">Python</span>
-                    <span className="px-2.5 py-1 text-[11px] rounded-md bg-slate-800 text-slate-300">React.js</span>
-                    <span className="px-2.5 py-1 text-[11px] rounded-md bg-slate-800 text-slate-300">Machine Learning</span>
-                    <span className="px-2.5 py-1 text-[11px] rounded-md bg-slate-800 text-slate-300">Flutter</span>
-                    <span className="px-2.5 py-1 text-[11px] rounded-md bg-slate-800 text-slate-300">SQL & Power BI</span>
+                    <span className="px-2.5 py-1 text-[11px] rounded-md bg-cyan-950/60 border border-cyan-800 text-cyan-300 font-medium">Power BI & DAX</span>
+                    <span className="px-2.5 py-1 text-[11px] rounded-md bg-blue-950/60 border border-blue-800 text-blue-300 font-medium">Advanced SQL</span>
+                    <span className="px-2.5 py-1 text-[11px] rounded-md bg-slate-800 text-slate-300 font-medium">Python (Pandas)</span>
+                    <span className="px-2.5 py-1 text-[11px] rounded-md bg-slate-800 text-slate-300 font-medium">Advanced Excel</span>
+                    <span className="px-2.5 py-1 text-[11px] rounded-md bg-emerald-950/60 border border-emerald-800 text-emerald-300 font-medium">Predictive ML</span>
                   </div>
                 </div>
               </div>

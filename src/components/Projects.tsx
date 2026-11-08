@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { Sparkles, ExternalLink, Play, Layers, ArrowUpRight, Check } from 'lucide-react';
+import { Sparkles, Check, BarChart3, TrendingUp } from 'lucide-react';
 import { PROJECTS, Project } from '../data/portfolioData';
 import { HousingPredictorModal } from './Simulators/HousingPredictorModal';
 import { SmartMobilityModal } from './Simulators/SmartMobilityModal';
 import { SeatPickerModal } from './Simulators/SeatPickerModal';
 import { SalesAnalyticsModal } from './Simulators/SalesAnalyticsModal';
+import { ChurnPredictorModal } from './Simulators/ChurnPredictorModal';
 import { GithubIcon } from './Icons';
 
 export const Projects: React.FC = () => {
-  const [filter, setFilter] = useState<'all' | 'ai' | 'fullstack' | 'mobile' | 'data'>('all');
+  const [filter, setFilter] = useState<'all' | 'bi' | 'predictive' | 'sql' | 'spatial'>('all');
   
   // Modal states
-  const [activeModal, setActiveModal] = useState<'housing' | 'mobility' | 'seatpicker' | 'sales' | null>(null);
+  const [activeModal, setActiveModal] = useState<'housing' | 'mobility' | 'seatpicker' | 'sales' | 'churn' | null>(null);
 
   const filteredProjects = filter === 'all'
     ? PROJECTS
@@ -19,13 +20,13 @@ export const Projects: React.FC = () => {
 
   const categories = [
     { id: 'all', label: 'All Projects' },
-    { id: 'ai', label: 'AI & Machine Learning' },
-    { id: 'fullstack', label: 'Full-Stack Web' },
-    { id: 'mobile', label: 'Mobile (Flutter)' },
-    { id: 'data', label: 'Data Analytics & BI' },
+    { id: 'bi', label: 'Power BI & BI Dashboards' },
+    { id: 'predictive', label: 'Predictive & Statistical ML' },
+    { id: 'spatial', label: 'Spatial & Telemetry Analytics' },
+    { id: 'sql', label: 'SQL & Database Engineering' },
   ];
 
-  const handleOpenDemo = (type?: 'housing' | 'mobility' | 'seatpicker' | 'sales') => {
+  const handleOpenDemo = (type?: 'housing' | 'mobility' | 'seatpicker' | 'sales' | 'churn') => {
     if (type) setActiveModal(type);
   };
 
@@ -36,14 +37,14 @@ export const Projects: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-xs font-semibold text-cyan-400 mb-3">
-            <Sparkles className="w-3.5 h-3.5" />
-            Engineering Portfolio
+            <BarChart3 className="w-3.5 h-3.5" />
+            Data Analytics & BI Portfolio
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Featured Projects & <span className="gradient-text">Interactive Systems</span>
+            Case Studies, Dashboards & <span className="gradient-text">Predictive Analytics</span>
           </h2>
           <p className="text-slate-400 mt-3 text-sm sm:text-base">
-            From smart city multimodal AI algorithms to machine learning pipelines and cross-platform mobile apps. Click on any interactive simulator to test them directly!
+            Real-world data pipelines, Power BI executive dashboards, subscriber retention models, and statistical regression engines. Test each case study with interactive live simulators!
           </p>
 
           {/* Filter Pills */}
@@ -79,7 +80,7 @@ export const Projects: React.FC = () => {
                   </span>
                   {project.featured && (
                     <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                      ★ Featured
+                      ★ High Business Impact
                     </span>
                   )}
                 </div>
@@ -142,7 +143,7 @@ export const Projects: React.FC = () => {
                       className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/30 text-cyan-300 hover:text-white text-xs font-semibold transition"
                     >
                       <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-                      Live Simulator
+                      Interactive Analytics Simulator
                     </button>
                   )}
 
@@ -180,6 +181,10 @@ export const Projects: React.FC = () => {
       />
       <SalesAnalyticsModal
         isOpen={activeModal === 'sales'}
+        onClose={() => setActiveModal(null)}
+      />
+      <ChurnPredictorModal
+        isOpen={activeModal === 'churn'}
         onClose={() => setActiveModal(null)}
       />
     </section>

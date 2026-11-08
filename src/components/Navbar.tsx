@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Download, Mail, ExternalLink, Code2 } from 'lucide-react';
+import { Menu, X, Download } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { GithubIcon, LinkedinIcon } from './Icons';
 
@@ -18,7 +18,8 @@ export const Navbar: React.FC = () => {
   const navLinks = [
     { name: 'About', href: '#about' },
     { name: 'Projects', href: '#projects' },
-    { name: 'Skills', href: '#skills' },
+    { name: 'Analytics Process', href: '#process' },
+    { name: 'Skills & Tools', href: '#skills' },
     { name: 'Education', href: '#education' },
     { name: 'Certifications', href: '#certifications' },
     { name: 'Contact', href: '#contact' },
@@ -28,7 +29,7 @@ export const Navbar: React.FC = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#080c14]/85 backdrop-blur-md border-b border-white/10 shadow-lg shadow-black/30 py-3'
+          ? 'bg-[#080c14]/90 backdrop-blur-md border-b border-white/10 shadow-lg shadow-black/30 py-3'
           : 'bg-transparent py-5'
       }`}
     >
@@ -36,15 +37,15 @@ export const Navbar: React.FC = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2 group">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white font-mono font-bold shadow-md shadow-cyan-500/20 group-hover:scale-105 transition">
-              P
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white font-mono font-bold shadow-md shadow-cyan-500/20 group-hover:scale-105 transition">
+              📊
             </div>
             <div className="flex flex-col">
               <span className="font-bold text-lg tracking-tight text-white flex items-center gap-1">
-                PRINS<span className="text-cyan-400">.DEV</span>
+                PRINS<span className="text-cyan-400">.DATA</span>
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse ml-0.5" />
               </span>
-              <span className="text-[10px] text-slate-400 font-mono -mt-1">Full-Stack & AI</span>
+              <span className="text-[10px] text-slate-400 font-mono -mt-1">Data & BI Analyst</span>
             </div>
           </a>
 
