@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Download, Mail, MapPin, Sparkles, Database, Terminal } from 'lucide-react';
+import { ArrowRight, Download, Mail, MapPin, Sparkles, Database, Terminal, Code2 } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { GithubIcon, LinkedinIcon } from './Icons';
 import { ParticleCanvas } from './ParticleCanvas';
+import { TiltCard } from './TiltCard';
+import { MagneticButton } from './MagneticButton';
+import { TerminalWidget } from './TerminalWidget';
 
 export const Hero: React.FC = () => {
   const [titleIndex, setTitleIndex] = useState(0);
+  const [showTerminal, setShowTerminal] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -24,8 +28,8 @@ export const Hero: React.FC = () => {
       <div className="absolute inset-0 cyber-grid [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
       {/* Fluid Drifting Aurora Waves */}
-      <div className="absolute top-10 left-1/4 -translate-x-1/2 w-[420px] h-[420px] bg-gradient-to-tr from-cyan-600/15 to-blue-600/15 rounded-full blur-[120px] pointer-events-none animate-aurora-1" />
-      <div className="absolute top-36 right-10 w-[380px] h-[380px] bg-gradient-to-br from-violet-600/15 to-indigo-600/15 rounded-full blur-[120px] pointer-events-none animate-aurora-2" />
+      <div className="absolute top-10 left-1/4 -translate-x-1/2 w-[440px] h-[440px] bg-gradient-to-tr from-cyan-600/15 to-blue-600/15 rounded-full blur-[130px] pointer-events-none animate-aurora-1" />
+      <div className="absolute top-36 right-10 w-[400px] h-[400px] bg-gradient-to-br from-violet-600/15 to-indigo-600/15 rounded-full blur-[130px] pointer-events-none animate-aurora-2" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -118,31 +122,44 @@ export const Hero: React.FC = () => {
               </span>
             </motion.div>
 
-            {/* Prominent CTA Buttons */}
+            {/* Prominent CTA Buttons with Magnetic Spring Effect */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45, duration: 0.6 }}
               className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2"
             >
-              <a
-                href="#projects"
-                className="group relative flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 text-white font-semibold text-sm shadow-xl shadow-blue-500/25 transition-all duration-300 hover:scale-105 active:scale-95 overflow-hidden"
-              >
-                {/* Button shine sweep */}
-                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                <span className="relative z-10">Explore My Work</span>
-                <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
-              </a>
+              <MagneticButton>
+                <a
+                  href="#projects"
+                  className="group relative flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 text-white font-semibold text-sm shadow-xl shadow-blue-500/25 transition-all duration-300 hover:scale-105 active:scale-95 overflow-hidden"
+                >
+                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                  <span className="relative z-10">Explore My Work</span>
+                  <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </MagneticButton>
 
-              <a
-                href={PERSONAL_INFO.resumePdf}
-                download="Prins_Patel_Resume.pdf"
-                className="flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 hover:border-cyan-400 text-slate-200 hover:text-white font-semibold text-sm transition-all duration-300 hover:scale-105 active:scale-95 shadow-md"
+              <MagneticButton>
+                <a
+                  href={PERSONAL_INFO.resumePdf}
+                  download="Prins_Patel_Resume.pdf"
+                  className="flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 hover:border-cyan-400 text-slate-200 hover:text-white font-semibold text-sm transition-all duration-300 hover:scale-105 active:scale-95 shadow-md"
+                >
+                  <Download className="w-4 h-4 text-cyan-400" />
+                  <span>Download Resume</span>
+                </a>
+              </MagneticButton>
+
+              {/* Terminal Toggle Button */}
+              <button
+                onClick={() => setShowTerminal(!showTerminal)}
+                className="flex items-center gap-1.5 px-3.5 py-3.5 rounded-xl bg-slate-900/60 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-cyan-400 text-xs font-semibold transition"
+                title="Toggle Code & Pipeline Console"
               >
-                <Download className="w-4 h-4 text-cyan-400" />
-                <span>Download Resume</span>
-              </a>
+                <Code2 className="w-4 h-4 text-cyan-400" />
+                <span>{showTerminal ? 'Hide Console' : 'Live Console'}</span>
+              </button>
             </motion.div>
 
             {/* Social Icons */}
@@ -180,7 +197,7 @@ export const Hero: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Column: Profile Showcase Card with Animated Float */}
+          {/* Right Column: 3D Perspective Tilt Card */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -191,7 +208,7 @@ export const Hero: React.FC = () => {
               {/* Outer Glow Halo */}
               <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 rounded-3xl blur-2xl opacity-30 animate-pulse" />
 
-              <div className="relative bg-[#0c1322] border border-white/10 rounded-2xl p-6 shadow-2xl backdrop-blur-xl transition duration-500 hover:shadow-cyan-500/10">
+              <TiltCard className="p-6 bg-[#0c1322] border border-white/10 shadow-2xl backdrop-blur-xl">
                 {/* Profile Photo Display */}
                 <div className="relative mx-auto w-60 h-60 sm:w-68 sm:h-68 rounded-2xl overflow-hidden border border-cyan-400/30 shadow-2xl group">
                   <img
@@ -233,11 +250,27 @@ export const Hero: React.FC = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </TiltCard>
             </div>
           </motion.div>
 
         </div>
+
+        {/* Live Interactive Terminal Modal / Accordion */}
+        <AnimatePresence>
+          {showTerminal && (
+            <motion.div
+              initial={{ opacity: 0, height: 0, y: -20 }}
+              animate={{ opacity: 1, height: 'auto', y: 0 }}
+              exit={{ opacity: 0, height: 0, y: -20 }}
+              transition={{ duration: 0.4 }}
+              className="mt-12 overflow-hidden"
+            >
+              <TerminalWidget />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
       </div>
     </section>
   );

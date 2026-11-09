@@ -7,6 +7,7 @@ import { TechMarquee } from './components/TechMarquee';
 import { About } from './components/About';
 import { Skills } from './components/Skills';
 import { Projects } from './components/Projects';
+import { InteractiveChartPlayground } from './components/InteractiveChartPlayground';
 import { Certifications } from './components/Certifications';
 import { Education } from './components/Education';
 import { Journey } from './components/Journey';
@@ -32,6 +33,7 @@ export const App: React.FC = () => {
         <About />
         <Skills />
         <Projects />
+        <InteractiveChartPlayground />
         <Certifications />
         <Education />
         <Journey />
