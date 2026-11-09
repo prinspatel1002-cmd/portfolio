@@ -1,4 +1,5 @@
 import React from 'react';
+import { ThemeProvider } from './context/ThemeContext';
 import { CustomCursor } from './components/CustomCursor';
 import { ScrollProgress } from './components/ScrollProgress';
 import { Navbar } from './components/Navbar';
@@ -16,33 +17,35 @@ import { Footer } from './components/Footer';
 
 export const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-[#080B12] text-slate-100 flex flex-col font-sans selection:bg-cyan-500 selection:text-black relative">
-      {/* Scroll Progress Bar at the very top */}
-      <ScrollProgress />
+    <ThemeProvider>
+      <div className="min-h-screen bg-white dark:bg-[#080B12] text-slate-800 dark:text-slate-100 flex flex-col font-sans selection:bg-blue-600 selection:text-white dark:selection:bg-cyan-500 dark:selection:text-black relative transition-colors duration-300">
+        {/* Scroll Progress Bar at the very top */}
+        <ScrollProgress />
 
-      {/* Desktop-only Custom Animated Follower Cursor */}
-      <CustomCursor />
+        {/* Desktop-only Custom Animated Follower Cursor */}
+        <CustomCursor />
 
-      {/* Sticky Navigation Bar */}
-      <Navbar />
+        {/* Sticky Navigation Bar with Light/Dark Mode Switcher */}
+        <Navbar />
 
-      {/* Main Content Sections */}
-      <main className="flex-grow">
-        <Hero />
-        <TechMarquee />
-        <About />
-        <Skills />
-        <Projects />
-        <InteractiveChartPlayground />
-        <Certifications />
-        <Education />
-        <Journey />
-        <Contact />
-      </main>
+        {/* Main Content Sections */}
+        <main className="flex-grow">
+          <Hero />
+          <TechMarquee />
+          <About />
+          <Skills />
+          <Projects />
+          <InteractiveChartPlayground />
+          <Certifications />
+          <Education />
+          <Journey />
+          <Contact />
+        </main>
 
-      {/* Footer */}
-      <Footer />
-    </div>
+        {/* Footer */}
+        <Footer />
+      </div>
+    </ThemeProvider>
   );
 };
 

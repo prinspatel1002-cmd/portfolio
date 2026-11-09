@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from '../context/ThemeContext';
 
 export const CustomCursor: React.FC = () => {
   const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
     // Only run on devices with a fine pointer (mouse), not touch screens
@@ -43,11 +45,15 @@ export const CustomCursor: React.FC = () => {
 
   if (!isVisible) return null;
 
+  const isDark = theme === 'dark';
+
   return (
     <>
       {/* Small dot follower */}
       <motion.div
-        className="fixed top-0 left-0 w-2.5 h-2.5 bg-cyan-400 rounded-full pointer-events-none z-50 mix-blend-screen"
+        className={`fixed top-0 left-0 w-2.5 h-2.5 rounded-full pointer-events-none z-50 ${
+          isDark ? 'bg-cyan-400 mix-blend-screen' : 'bg-blue-600'
+        }`}
         animate={{
           x: mousePosition.x - 5,
           y: mousePosition.y - 5,
@@ -58,13 +64,19 @@ export const CustomCursor: React.FC = () => {
 
       {/* Outer subtle ring */}
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-cyan-400/50 pointer-events-none z-50"
+        className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-50"
         animate={{
           x: mousePosition.x - 16,
           y: mousePosition.y - 16,
           scale: isHovered ? 1.6 : 1,
-          borderColor: isHovered ? 'rgba(96, 165, 250, 0.8)' : 'rgba(56, 189, 248, 0.4)',
-          backgroundColor: isHovered ? 'rgba(59, 130, 246, 0.12)' : 'transparent',
+          borderColor: isDark
+            ? isHovered ? 'rgba(96, 165, 250, 0.8)' : 'rgba(56, 189, 248, 0.4)'
+            : isHovered ? 'rgba(37, 99, 235, 0.8)' : 'rgba(59, 130, 246, 0.5)',
+          borderWidth: '1.5px',
+          borderStyle: 'solid',
+          backgroundColor: isDark
+            ? isHovered ? 'rgba(59, 130, 246, 0.12)' : 'transparent'
+            : isHovered ? 'rgba(37, 99, 235, 0.08)' : 'transparent',
         }}
         transition={{ type: 'spring', damping: 25, stiffness: 250, mass: 0.2 }}
       />

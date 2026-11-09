@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from 'react';
+import { useTheme } from '../context/ThemeContext';
 
 export const ParticleCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -59,6 +61,8 @@ export const ParticleCanvas: React.FC = () => {
       });
     }
 
+    const isDark = theme === 'dark';
+
     // Animation Loop
     const render = () => {
       ctx.clearRect(0, 0, width, height);
@@ -71,8 +75,10 @@ export const ParticleCanvas: React.FC = () => {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < 110) {
-            const alpha = (1 - dist / 110) * 0.12;
-            ctx.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
+            const alpha = (1 - dist / 110) * (isDark ? 0.12 : 0.08);
+            ctx.strokeStyle = isDark
+              ? `rgba(56, 189, 248, ${alpha})`
+              : `rgba(37, 99, 235, ${alpha})`;
             ctx.lineWidth = 0.8;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
@@ -84,15 +90,12 @@ export const ParticleCanvas: React.FC = () => {
 
       // Draw and update particles
       for (let p of particles) {
-        // Move
         p.x += p.vx;
         p.y += p.vy;
 
-        // Bounce from walls
         if (p.x < 0 || p.x > width) p.vx *= -1;
         if (p.y < 0 || p.y > height) p.vy *= -1;
 
-        // Subtle mouse push
         const dx = mouse.x - p.x;
         const dy = mouse.y - p.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -102,8 +105,9 @@ export const ParticleCanvas: React.FC = () => {
           p.y -= (dy / dist) * force * 1.2;
         }
 
-        // Render point
-        ctx.fillStyle = `rgba(56, 189, 248, ${p.baseAlpha})`;
+        ctx.fillStyle = isDark
+          ? `rgba(56, 189, 248, ${p.baseAlpha})`
+          : `rgba(37, 99, 235, ${p.baseAlpha * 0.7})`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
@@ -119,7 +123,7 @@ export const ParticleCanvas: React.FC = () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, []);
+  }, [theme]);
 
   return (
     <canvas

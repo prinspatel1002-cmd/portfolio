@@ -57,19 +57,19 @@ export const InteractiveChartPlayground: React.FC = () => {
   const current = scenarios[activeScenario];
 
   return (
-    <div className="py-20 relative z-10 bg-[#070b14]/90 border-t border-slate-900/80">
+    <div className="py-20 relative z-10 bg-white dark:bg-[#070b14]/90 border-t border-slate-200 dark:border-slate-900/80 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/25 text-xs font-semibold text-cyan-400 mb-3 shadow-[0_0_15px_rgba(56,189,248,0.15)]">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-cyan-500/10 border border-blue-200 dark:border-cyan-500/25 text-xs font-semibold text-blue-600 dark:text-cyan-400 mb-3 shadow-sm">
             <Activity className="w-3.5 h-3.5" />
             Live Analytical Sandbox
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             Interactive <span className="gradient-text">Data Visualizer</span>
           </h2>
-          <p className="text-slate-400 mt-3 text-xs sm:text-sm">
+          <p className="text-slate-600 dark:text-slate-400 mt-3 text-xs sm:text-sm">
             Toggle scenarios below to watch real-time metric curves render and compute statistical KPIs.
           </p>
 
@@ -84,8 +84,8 @@ export const InteractiveChartPlayground: React.FC = () => {
                 }}
                 className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-300 ${
                   activeScenario === sc
-                    ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-lg shadow-cyan-500/20 scale-105 border border-cyan-400/40'
-                    : 'bg-slate-900/80 text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800'
+                    ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-md shadow-blue-500/20 scale-105 border border-cyan-400/40'
+                    : 'bg-slate-100 dark:bg-slate-900/80 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
                 }`}
               >
                 {sc === 'revenue'
@@ -99,30 +99,30 @@ export const InteractiveChartPlayground: React.FC = () => {
         </div>
 
         {/* Visualizer Canvas Box */}
-        <div className="max-w-4xl mx-auto p-6 sm:p-8 rounded-2xl bg-[#0c1322] border border-slate-800 shadow-2xl relative overflow-hidden">
+        <div className="max-w-4xl mx-auto p-6 sm:p-8 rounded-2xl bg-slate-50 dark:bg-[#0c1322] border border-slate-200 dark:border-slate-800 shadow-xl relative overflow-hidden">
           {/* Top metadata */}
-          <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-800">
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-200 dark:border-slate-800">
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-base sm:text-lg font-bold text-white">{current.title}</h3>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/30">
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">{current.title}</h3>
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-blue-100 dark:bg-cyan-500/10 text-blue-700 dark:text-cyan-300 border border-blue-200 dark:border-cyan-500/30">
                   {current.tag}
                 </span>
               </div>
-              <p className="text-xs text-slate-400 mt-1">{current.highlight}</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{current.highlight}</p>
             </div>
             <div className="text-right">
               <span className="text-xs text-slate-500 uppercase font-mono block">Target Metric</span>
-              <span className="text-base font-mono font-bold text-cyan-400">{current.metric}</span>
+              <span className="text-base font-mono font-bold text-blue-600 dark:text-cyan-400">{current.metric}</span>
             </div>
           </div>
 
           {/* Bar / Curve Visualizer */}
           <div className="h-60 sm:h-72 flex items-end justify-between gap-3 sm:gap-6 pt-8 pb-4 px-2 sm:px-6 relative">
             {/* Horizontal Grid lines */}
-            <div className="absolute inset-x-0 top-1/4 border-b border-slate-800/60 pointer-events-none" />
-            <div className="absolute inset-x-0 top-2/4 border-b border-slate-800/60 pointer-events-none" />
-            <div className="absolute inset-x-0 top-3/4 border-b border-slate-800/60 pointer-events-none" />
+            <div className="absolute inset-x-0 top-1/4 border-b border-slate-200 dark:border-slate-800/60 pointer-events-none" />
+            <div className="absolute inset-x-0 top-2/4 border-b border-slate-200 dark:border-slate-800/60 pointer-events-none" />
+            <div className="absolute inset-x-0 top-3/4 border-b border-slate-200 dark:border-slate-800/60 pointer-events-none" />
 
             {current.data.map((item, idx) => {
               const heightPct = item.value;
@@ -155,8 +155,8 @@ export const InteractiveChartPlayground: React.FC = () => {
                     initial={{ height: 0 }}
                     animate={{ height: `${heightPct}%` }}
                     transition={{ duration: 0.6, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                    className={`w-full max-w-[48px] rounded-t-xl bg-gradient-to-t ${current.color} shadow-lg transition-all duration-300 relative ${
-                      isHovered ? 'brightness-125 scale-x-105' : 'opacity-85'
+                    className={`w-full max-w-[48px] rounded-t-xl bg-gradient-to-t ${current.color} shadow-md transition-all duration-300 relative ${
+                      isHovered ? 'brightness-110 scale-x-105' : 'opacity-85'
                     }`}
                   >
                     {/* Top glow dot */}
@@ -164,7 +164,7 @@ export const InteractiveChartPlayground: React.FC = () => {
                   </motion.div>
 
                   {/* X-axis label */}
-                  <span className="text-xs font-mono text-slate-400 mt-3 font-semibold">
+                  <span className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-3 font-semibold">
                     {item.label}
                   </span>
                 </div>
@@ -173,12 +173,12 @@ export const InteractiveChartPlayground: React.FC = () => {
           </div>
 
           {/* Footer Insight */}
-          <div className="mt-4 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+          <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
             <span className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-cyan-400 animate-pulse" />
               Hover columns for exact statistical values
             </span>
-            <span className="font-mono text-slate-500 text-[11px]">Dynamic Scaled Vectors</span>
+            <span className="font-mono text-slate-400 dark:text-slate-500 text-[11px]">Dynamic Scaled Vectors</span>
           </div>
         </div>
 

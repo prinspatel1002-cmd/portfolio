@@ -6,7 +6,7 @@ import { SpotlightCard } from './SpotlightCard';
 
 export const Education: React.FC = () => {
   return (
-    <section id="education" className="py-24 relative z-10 bg-[#080B12] border-t border-slate-900/80">
+    <section id="education" className="py-24 relative z-10 bg-white dark:bg-[#080B12] border-t border-slate-200 dark:border-slate-900/80 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -17,14 +17,14 @@ export const Education: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-blue-400 mb-3 shadow-[0_0_15px_rgba(59,130,246,0.15)]">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 text-xs font-semibold text-blue-600 dark:text-blue-400 mb-3 shadow-sm">
             <GraduationCap className="w-3.5 h-3.5" />
             Formal Background
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             Education <span className="gradient-text">Timeline</span>
           </h2>
-          <p className="text-slate-400 mt-3 text-sm sm:text-base">
+          <p className="text-slate-600 dark:text-slate-400 mt-3 text-sm sm:text-base">
             Academic qualifications providing foundations in computer engineering, data architectures, and algorithms.
           </p>
         </motion.div>
@@ -39,33 +39,33 @@ export const Education: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <SpotlightCard className="p-6 sm:p-8 relative group shadow-2xl hover:border-cyan-500/40 transition-all duration-300">
+              <SpotlightCard className="p-6 sm:p-8 relative group shadow-xl hover:border-blue-400 dark:hover:border-cyan-500/40 transition-all duration-300">
                 {/* Top Meta Bar */}
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-                  <span className="text-xs font-mono font-semibold px-3 py-1 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 flex items-center gap-1.5 shadow-sm">
+                  <span className="text-xs font-mono font-semibold px-3 py-1 rounded-full bg-blue-50 dark:bg-cyan-500/15 text-blue-700 dark:text-cyan-300 border border-blue-200 dark:border-cyan-500/30 flex items-center gap-1.5 shadow-sm">
                     <Calendar className="w-3.5 h-3.5" />
                     {edu.duration}
                   </span>
 
-                  <span className="text-xs text-slate-400 flex items-center gap-1">
-                    <MapPin className="w-3.5 h-3.5 text-cyan-400" />
+                  <span className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                    <MapPin className="w-3.5 h-3.5 text-blue-600 dark:text-cyan-400" />
                     Ahmedabad, Gujarat, India
                   </span>
                 </div>
 
                 {/* Degree Title & Institution */}
-                <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-300 transition duration-300 mb-1">
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-300 transition duration-300 mb-1">
                   Bachelor of Technology (B.Tech) – {edu.degree}
                 </h3>
-                <p className="text-sm font-semibold text-cyan-400 mb-5">
+                <p className="text-sm font-semibold text-blue-600 dark:text-cyan-400 mb-5">
                   {edu.institution}
                 </p>
 
                 {/* Highlights */}
-                <div className="space-y-2 pt-4 border-t border-slate-800/80">
+                <div className="space-y-2 pt-4 border-t border-slate-100 dark:border-slate-800/80">
                   {edu.highlights.map((h, hIdx) => (
-                    <div key={hIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
-                      <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                    <div key={hIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+                      <CheckCircle2 className="w-4 h-4 text-blue-600 dark:text-cyan-400 shrink-0 mt-0.5" />
                       <span>{h}</span>
                     </div>
                   ))}

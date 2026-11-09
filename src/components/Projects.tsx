@@ -23,7 +23,7 @@ export const Projects: React.FC = () => {
     : PROJECTS.filter(p => p.category === activeFilter);
 
   return (
-    <section id="projects" className="py-24 relative z-10 bg-[#080B12] border-t border-slate-900/80">
+    <section id="projects" className="py-24 relative z-10 bg-slate-50/60 dark:bg-[#080B12] border-t border-slate-200 dark:border-slate-900/80 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -34,14 +34,14 @@ export const Projects: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-14"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-xs font-semibold text-cyan-400 mb-3 shadow-[0_0_15px_rgba(56,189,248,0.1)]">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-cyan-500/10 border border-blue-200 dark:border-cyan-500/20 text-xs font-semibold text-blue-600 dark:text-cyan-400 mb-3 shadow-sm">
             <Layers className="w-3.5 h-3.5" />
             Portfolio Showcase
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             Featured <span className="gradient-text">Projects</span>
           </h2>
-          <p className="text-slate-400 mt-3 text-sm sm:text-base">
+          <p className="text-slate-600 dark:text-slate-400 mt-3 text-sm sm:text-base">
             Carefully engineered projects spanning machine learning prediction, cross-platform mobile apps, smart mobility systems, and full-stack web applications.
           </p>
 
@@ -53,8 +53,8 @@ export const Projects: React.FC = () => {
                 onClick={() => setActiveFilter(cat.id)}
                 className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 ${
                   activeFilter === cat.id
-                    ? 'bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 text-white shadow-lg shadow-blue-500/25 scale-105'
-                    : 'bg-slate-900/80 text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800'
+                    ? 'bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 text-white shadow-md shadow-blue-500/25 scale-105'
+                    : 'bg-white dark:bg-slate-900/80 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 shadow-sm'
                 }`}
               >
                 {cat.label}
@@ -78,31 +78,31 @@ export const Projects: React.FC = () => {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.5, delay: idx * 0.08 }}
               >
-                <SpotlightCard className="p-6 sm:p-7 flex flex-col justify-between h-full group hover:shadow-2xl hover:shadow-cyan-500/10">
+                <SpotlightCard className="p-6 sm:p-7 flex flex-col justify-between h-full group hover:shadow-xl dark:hover:shadow-cyan-500/10">
                   <div>
                     {/* Category & Status Bar */}
                     <div className="flex items-center justify-between mb-4">
-                      <span className="text-[11px] font-mono font-semibold uppercase tracking-wider px-2.5 py-1 rounded-md bg-slate-800/80 text-cyan-300 border border-slate-700/80">
+                      <span className="text-[11px] font-mono font-semibold uppercase tracking-wider px-2.5 py-1 rounded-md bg-blue-50 dark:bg-slate-800/80 text-blue-700 dark:text-cyan-300 border border-blue-200 dark:border-slate-700/80">
                         {project.categoryLabel}
                       </span>
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xl font-bold text-white group-hover:text-cyan-300 transition duration-300 mb-2">
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-300 transition duration-300 mb-2">
                       {project.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
                       {project.description}
                     </p>
 
                     {/* Key Features (if available) */}
                     {project.keyFeatures && (
-                      <div className="space-y-1.5 mb-5 p-3 rounded-xl bg-slate-900/60 border border-slate-800/80">
+                      <div className="space-y-1.5 mb-5 p-3 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80">
                         {project.keyFeatures.map((kf, kfIdx) => (
-                          <div key={kfIdx} className="flex items-center gap-2 text-xs text-slate-300">
-                            <Check className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                          <div key={kfIdx} className="flex items-center gap-2 text-xs text-slate-700 dark:text-slate-300">
+                            <Check className="w-3.5 h-3.5 text-blue-600 dark:text-cyan-400 shrink-0" />
                             <span>{kf}</span>
                           </div>
                         ))}
@@ -111,13 +111,13 @@ export const Projects: React.FC = () => {
                   </div>
 
                   {/* Bottom Card Area */}
-                  <div className="pt-4 border-t border-slate-800/80 mt-auto">
+                  <div className="pt-4 border-t border-slate-100 dark:border-slate-800/80 mt-auto">
                     {/* Technology Badges */}
                     <div className="flex flex-wrap gap-1.5 mb-5">
                       {project.technologies.map((tech, tIdx) => (
                         <span
                           key={tIdx}
-                          className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-slate-800/60 text-slate-300 border border-slate-700/60 group-hover:border-slate-600 transition"
+                          className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/60"
                         >
                           {tech}
                         </span>
@@ -128,7 +128,7 @@ export const Projects: React.FC = () => {
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => setSelectedProject(project)}
-                        className="flex-1 flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-gradient-to-r from-blue-600/20 to-cyan-600/20 hover:from-blue-600/35 hover:to-cyan-600/35 border border-cyan-500/30 text-cyan-300 hover:text-white text-xs font-semibold transition-all duration-300"
+                        className="flex-1 flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-blue-50 dark:bg-blue-600/20 hover:bg-blue-100 dark:hover:bg-blue-600/35 border border-blue-200 dark:border-cyan-500/30 text-blue-700 dark:text-cyan-300 text-xs font-semibold transition-all duration-300"
                       >
                         <Eye className="w-3.5 h-3.5" />
                         <span>View Project</span>
@@ -138,7 +138,7 @@ export const Projects: React.FC = () => {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold transition duration-300"
+                        className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white text-xs font-semibold transition duration-300"
                         title="View GitHub Repository"
                       >
                         <GithubIcon className="w-4 h-4" />
