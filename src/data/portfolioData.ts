@@ -1,298 +1,276 @@
 export interface Project {
   id: string;
   title: string;
-  tagline: string;
-  category: 'bi' | 'predictive' | 'sql' | 'spatial';
+  category: 'data-science' | 'flutter' | 'ai' | 'full-stack';
   categoryLabel: string;
-  summary: string;
-  featured: boolean;
-  image?: string;
-  metrics: { label: string; value: string }[];
-  tags: string[];
-  keyFeatures: string[];
-  githubUrl?: string;
+  description: string;
+  technologies: string[];
+  keyFeatures?: string[];
+  githubUrl: string;
   liveUrl?: string;
-  hasInteractiveDemo?: boolean;
-  interactiveType?: 'housing' | 'mobility' | 'seatpicker' | 'sales' | 'churn';
+  detailedOverview: string;
+  highlights: string[];
 }
 
 export interface SkillCategory {
   title: string;
+  description: string;
   iconName: string;
-  skills: { name: string; level: number; note?: string }[];
+  skills: { name: string; tag: string }[];
+}
+
+export interface Certification {
+  id: string;
+  title: string;
+  issuer: string;
+  credentialUrl: string;
+  description: string;
+  skillsLearned: string[];
+}
+
+export interface JourneyMilestone {
+  period: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  technologies: string[];
 }
 
 export const PERSONAL_INFO = {
   name: "Prins Patel",
-  tagline: "Data Analyst & Business Intelligence Specialist",
-  subheading: "Computer Engineering Student specializing in Python, SQL, Power BI, Advanced Excel, and Predictive Machine Learning. Passionate about uncovering hidden revenue opportunities, optimizing KPIs, and translating complex data into actionable executive insights.",
-  location: "Ahmedabad, Gujarat, India",
+  titles: [
+    "Data Analyst",
+    "Computer Engineer",
+    "Developer"
+  ],
+  location: "Gujarat, India",
   email: "prinspatel1002@gmail.com",
-  altEmail: "princepatelaaaa@gmail.com",
-  eduEmail: "prinspatel.23.cse@iite.indusuni.ac.in",
-  phone: "+91 6351668040",
-  whatsappUrl: "https://wa.me/916351668040?text=Hi%20Prins,%20I%20saw%20your%20Data%20Analyst%20portfolio%20and%20would%20love%20to%20connect!",
   github: "https://github.com/Prince-0210",
-  githubUser: "Prince-0210",
+  githubUsername: "Prince-0210",
   linkedin: "https://www.linkedin.com/in/prins-patel-39046627b/",
   profileImage: "./profile.jpg",
   resumePdf: "./Prins_Patel_Resume.pdf",
-  cgpa: "8.89 / 10",
-  expectedGraduation: "2027",
-  university: "Indus University, Ahmedabad",
-  openForWork: true,
-  bio: "Aspiring Data Analyst with a rigorous Computer Engineering foundation from Indus University. Proven expertise in data extraction, data cleaning, exploratory data analysis (EDA), statistical modeling, and interactive dashboard creation using Power BI, SQL, Python, and Excel. Skilled in transforming unstructured business datasets into high-impact visual intelligence."
+  availabilityStatus: "Open to Data Analyst & Engineering Roles",
+  summary: "I'm a Computer Engineering student passionate about transforming raw data into meaningful insights and building technology-driven solutions. I have experience with Data Science, Full-Stack Web Development, Flutter Application Development, and programming. I enjoy solving real-world problems through data analysis, visualization, and software development.",
+  careerObjective: "Seeking opportunities in Data Analytics, Data Science, and technology-driven software development."
 };
 
-export const HIGHLIGHT_STATS = [
-  { label: "Academic CGPA", value: "8.89 / 10", sub: "Indus University (DBMS & Data Mining)" },
-  { label: "SQL & Analytics Pipelines", value: "100+", sub: "Complex queries, window functions & CTEs" },
-  { label: "BI Dashboards & Reports", value: "12+", sub: "Power BI, Tableau, Excel & Python" },
-  { label: "Predictive Model Accuracy", value: "88% / 0.83", sub: "Tuned XGBoost & Customer Retention Models" }
-];
-
-export const PROJECTS: Project[] = [
+export const ABOUT_PILLARS = [
   {
-    id: "sales-analytics-dashboard",
-    title: "Executive Sales & Business Intelligence Dashboard",
-    tagline: "End-to-end revenue analytics, customer segmentation & margin optimization",
-    category: "bi",
-    categoryLabel: "Power BI & Business Intelligence",
-    summary: "Architected a comprehensive executive BI dashboard analyzing sales performance, regional profitability, customer cohort churn, and product lifecycle margins using real-world enterprise transaction data.",
-    featured: true,
-    metrics: [
-      { label: "Executive KPIs", value: "12+ Dynamic Metrics" },
-      { label: "Data Engine", value: "Optimized SQL + DAX" },
-      { label: "Insights Accuracy", value: "100% Validated" }
-    ],
-    tags: ["Power BI", "SQL", "Python", "Tableau", "Pandas", "Advanced Excel", "DAX Formulas"],
-    keyFeatures: [
-      "Engineered automated ETL pipelines normalizing multi-table sales and customer tables",
-      "Created dynamic DAX measures calculating YoY revenue velocity, gross margin variance, and moving averages",
-      "Identified critical seasonal demand spikes, customer acquisition trends, and low-margin skus",
-      "Formulated executive summary decks supporting inventory re-allocation and targeted discounting"
-    ],
-    githubUrl: "https://github.com/Prince-0210",
-    hasInteractiveDemo: true,
-    interactiveType: "sales"
+    title: "Data Analysis",
+    description: "Deriving patterns, cleaning messy datasets, and building visual narratives that explain business performance."
   },
   {
-    id: "california-housing",
-    title: "California Real Estate Market & Econometric Valuation Engine",
-    tagline: "Statistical EDA pipeline, IQR anomaly mitigation & tuned regression",
-    category: "predictive",
-    categoryLabel: "Statistical & Predictive Analytics",
-    summary: "Engineered an end-to-end econometric regression pipeline analyzing 20,640 census records. Applied IQR anomaly filtering, domain feature synthesis, log1p transformation, and 3D geospatial mapping to outperform baseline models by +24.4%.",
-    featured: true,
-    image: "./california_housing_showcase.png",
-    metrics: [
-      { label: "XGBoost R²", value: "0.8318 (+24.4%)" },
-      { label: "Mean Absolute Error", value: "15.18%" },
-      { label: "Outliers Filtered", value: "1,071 Anomalies" }
-    ],
-    tags: ["Python", "Pandas", "EDA", "XGBoost", "Scikit-Learn", "Streamlit", "Pydeck 3D GIS", "Altair"],
-    keyFeatures: [
-      "Synthesized domain features: RoomsPerPerson, BedsToRoomsRatio, and Coastal Proximity index",
-      "Isolated 1,071 extreme outliers using Inter-Quartile Range (IQR) and normalized heavy right-skewed targets",
-      "Evaluated feature correlation heatmaps and multicollinearity matrices (VIF)",
-      "Interactive 3D geospatial dashboard with live scenario simulations and real-time INR currency conversion"
-    ],
-    githubUrl: "https://github.com/Prince-0210/California-Housing-Price-Predictor",
-    hasInteractiveDemo: true,
-    interactiveType: "housing"
+    title: "Problem Solving",
+    description: "Approaching real-world challenges through structured algorithmic thinking and statistical methods."
   },
   {
-    id: "customer-churn-prediction",
-    title: "Customer Churn & Retention Analytics System",
-    tagline: "Cohort retention analysis, attrition scoring & marketing ROI modeling",
-    category: "predictive",
-    categoryLabel: "Customer Analytics & Churn",
-    summary: "Designed an analytical retention engine evaluating subscription subscriber behavior, identifying at-risk customer cohorts, and computing personalized intervention ROI before attrition occurs.",
-    featured: true,
-    metrics: [
-      { label: "ROC-AUC Score", value: "0.86" },
-      { label: "Model Recall", value: "84% Sensitivity" },
-      { label: "Data Pipeline", value: "Python + SQL" }
-    ],
-    tags: ["Python", "SQL", "Pandas", "Scikit-learn", "Matplotlib", "Seaborn", "Predictive Modeling"],
-    keyFeatures: [
-      "Extracted subscriber cohorts across tenure bands, payment methods, contract types, and service tickets",
-      "Trained classification algorithms (Random Forest, Logistic Regression) optimized for recall to capture at-risk accounts",
-      "Quantified retention campaign ROI, proving that targeted retention discounts yield +34% net lifetime value",
-      "Built automated churn risk scoring engine allowing sales reps to prioritize outreach"
-    ],
-    githubUrl: "https://github.com/Prince-0210",
-    hasInteractiveDemo: true,
-    interactiveType: "churn"
+    title: "Application Development",
+    description: "Crafting responsive full-stack web platforms and cross-platform mobile apps using modern architectures."
   },
   {
-    id: "smart-city-mobility",
-    title: "Ahmedabad Smart City Multimodal Transit & Telemetry Analytics",
-    tagline: "Sensor data fusion, congestion forecasting & urban mobility intelligence",
-    category: "spatial",
-    categoryLabel: "IoT & Telemetry Analytics",
-    summary: "Aggregated real-time GPS telemetry from Ahmedabad's BRTS buses, Metro lines, and road traffic sensors to predict arrival delays, detect route overcrowding, and optimize city-wide transit dispatching.",
-    featured: false,
-    image: "./cleaned_AI-Powered-Smart-City-Mobility-and-Safety-Platform.pdf",
-    metrics: [
-      { label: "Telemetry Feeds", value: "6 Sources" },
-      { label: "Congestion Alert", value: "< 2s Real-time" },
-      { label: "Analytics Core", value: "Time-Series + LLM" }
-    ],
-    tags: ["Data Analytics", "Python", "GPS Telemetry", "Time Series", "Operations Dashboard", "Smart Mobility"],
-    keyFeatures: [
-      "Ingested multi-source telematics across public transit corridors with real-time ETA regression forecasting",
-      "Demand heatmaps and anomaly detection for route capacity bottlenecks",
-      "Geofenced citizen safety tracking and emergency response dispatch routing",
-      "Executive command center visualizing city-wide ridership KPIs and historical transit trends"
-    ],
-    githubUrl: "https://github.com/Prince-0210",
-    hasInteractiveDemo: true,
-    interactiveType: "mobility"
-  },
-  {
-    id: "movie-ticket-booking",
-    title: "Cinema Seating Utilization & Box Office Mobile System",
-    tagline: "Cross-platform mobile ticketing with real-time inventory synchronization",
-    category: "sql",
-    categoryLabel: "Mobile & Inventory Analytics",
-    summary: "Engineered a cross-platform Flutter application featuring interactive cinema seat selection, dynamic price tiering (VIP vs Standard), and real-time database synchronization via Google Firebase.",
-    featured: false,
-    metrics: [
-      { label: "Platform", value: "Flutter / Dart" },
-      { label: "Sync Latency", value: "< 100ms Firebase" },
-      { label: "Pricing Engine", value: "Dynamic Tiers" }
-    ],
-    tags: ["Flutter", "Dart", "Firebase", "Realtime DB", "State Management", "Inventory Control"],
-    keyFeatures: [
-      "Visual seating occupancy matrix with instantaneous seat locking to prevent double bookings",
-      "Dynamic ticket pricing rules based on show timings, screen format (IMAX/3D), and seat tier",
-      "User authentication and digital ticket receipt generation synced with cloud database"
-    ],
-    githubUrl: "https://github.com/Prince-0210",
-    hasInteractiveDemo: true,
-    interactiveType: "seatpicker"
-  },
-  {
-    id: "student-helpdesk-portal",
-    title: "University Help Desk & SLA Ticket Resolution Analytics",
-    tagline: "Academic service grievance tracking & departmental resolution metrics",
-    category: "sql",
-    categoryLabel: "Operations & Service Analytics",
-    summary: "Built a database-driven web platform allowing university students to lodge grievances, track resolution progress, and enable administrative heads to monitor departmental resolution SLA times.",
-    featured: false,
-    metrics: [
-      { label: "Architecture", value: "MERN Stack" },
-      { label: "SLA Tracking", value: "Automated Triggers" },
-      { label: "Database", value: "MongoDB + Express" }
-    ],
-    tags: ["React.js", "Node.js", "Express.js", "MongoDB", "SQL/NoSQL", "SLA Reporting"],
-    keyFeatures: [
-      "Role-based grievance routing with audit trails across academic departments",
-      "Departmental resolution turnaround time (TAT) KPI calculation",
-      "Secure authentication and automated status notifications"
-    ],
-    githubUrl: "https://github.com/Prince-0210"
+    title: "Continuous Learning",
+    description: "Constantly expanding capabilities across emerging data tools, predictive modeling, and software engineering."
   }
 ];
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
-    title: "Data Analysis & Business Intelligence",
+    title: "Data Analytics",
+    description: "Core toolset for data wrangling, exploratory data analysis, reporting, and statistical visualization.",
     iconName: "BarChart3",
     skills: [
-      { name: "Power BI (DAX & Modeling)", level: 92, note: "Data modeling, DAX measures, drilldowns & KPI cards" },
-      { name: "Advanced Excel", level: 94, note: "Pivot Tables, XLOOKUP, Index/Match, Power Query, What-If Analysis" },
-      { name: "Tableau", level: 86, note: "Visual storytelling, parameters, interactive filters" },
-      { name: "Exploratory Data Analysis (EDA)", level: 95, note: "Distribution profiling, skew correction, IQR outlier handling" },
-      { name: "KPI Reporting & Executive Metrics", level: 90, note: "CLV, Churn, ARR, CAC, conversion funnels, margin variance" }
+      { name: "Python", tag: "Analytics & Scripting" },
+      { name: "SQL", tag: "Querying & Aggregations" },
+      { name: "Microsoft Excel", tag: "Spreadsheet Modeling & Pivot" },
+      { name: "Power BI", tag: "BI Dashboards & DAX" },
+      { name: "Pandas", tag: "Data Manipulation" },
+      { name: "NumPy", tag: "Numerical Operations" },
+      { name: "Data Visualization", tag: "Charts & Storytelling" }
     ]
   },
   {
-    title: "SQL & Relational Databases",
-    iconName: "Database",
-    skills: [
-      { name: "Advanced SQL", level: 92, note: "Window functions (RANK, ROW_NUMBER, NTILE), CTEs, multi-table joins" },
-      { name: "MySQL & Relational Design", level: 88, note: "Schema normalization (3NF), indexing, query optimization" },
-      { name: "Database Management (DBMS)", level: 90, note: "ACID properties, transaction management, ER diagrams" },
-      { name: "MongoDB & NoSQL", level: 82, note: "Document querying, aggregation pipelines, unstructured data" }
-    ]
-  },
-  {
-    title: "Python for Data Science",
+    title: "Programming",
+    description: "Foundational and object-oriented languages for algorithmic problem-solving and software logic.",
     iconName: "Code2",
     skills: [
-      { name: "Pandas & Data Wrangling", level: 96, note: "Data manipulation, merging, groupby aggregations, pivot tables" },
-      { name: "NumPy", level: 90, note: "Vectorized array calculations, matrix operations, broadcasting" },
-      { name: "Data Visualization (Seaborn/Matplotlib)", level: 92, note: "Custom statistical plots, heatmaps, subplots, palettes" },
-      { name: "Spatial & 3D Analytics (Pydeck/Altair)", level: 86, note: "Geospatial layers, choropleths, 3D point cloud maps" },
-      { name: "Statistical Hypothesis Testing", level: 85, note: "Probability distributions, p-values, correlation, confidence intervals" }
+      { name: "Python", tag: "Primary Language" },
+      { name: "Java", tag: "Object-Oriented Programming" },
+      { name: "JavaScript", tag: "Dynamic Scripting" },
+      { name: "C / C++", tag: "Systems Fundamentals" }
     ]
   },
   {
-    title: "Machine Learning & Predictive Modeling",
-    iconName: "BrainCircuit",
+    title: "Web Development",
+    description: "Frontend and backend web technologies for database-driven, responsive applications.",
+    iconName: "Layout",
     skills: [
-      { name: "Scikit-Learn & XGBoost", level: 90, note: "Tuned regression, classification, cross-validation, hyperparameter grid" },
-      { name: "Feature Engineering", level: 92, note: "One-Hot encoding, StandardScaler, log1p transformation, interaction terms" },
-      { name: "Model Evaluation & Diagnostics", level: 90, note: "ROC-AUC, RMSE, MAE, Confusion Matrix, Precision-Recall trade-off" },
-      { name: "AWS Cloud ML & NLP", level: 82, note: "AWS Academy Graduate certified in ML for Natural Language Processing" }
+      { name: "HTML", tag: "Semantic Markup" },
+      { name: "CSS", tag: "Responsive Styling" },
+      { name: "JavaScript", tag: "Client-Side Logic" },
+      { name: "React", tag: "Component-Based UI" },
+      { name: "Node.js", tag: "Runtime Environment" },
+      { name: "Express.js", tag: "RESTful Web APIs" },
+      { name: "MongoDB", tag: "NoSQL Database" }
+    ]
+  },
+  {
+    title: "Application Development",
+    description: "Cross-platform mobile development frameworks and integrated development environments.",
+    iconName: "Smartphone",
+    skills: [
+      { name: "Flutter", tag: "Cross-Platform Framework" },
+      { name: "Dart", tag: "Mobile Programming" },
+      { name: "Android Studio", tag: "Mobile IDE & Tooling" }
+    ]
+  },
+  {
+    title: "Tools & Environments",
+    description: "Essential version control, analysis notebooks, and developer utilities.",
+    iconName: "Wrench",
+    skills: [
+      { name: "Git", tag: "Version Control" },
+      { name: "GitHub", tag: "Code Collaboration" },
+      { name: "VS Code", tag: "Primary Code Editor" },
+      { name: "Jupyter Notebook", tag: "Data Science Environment" },
+      { name: "Power BI", tag: "Business Intelligence" }
     ]
   }
 ];
 
-export const EDUCATION_LIST = [
+export const PROJECTS: Project[] = [
   {
-    degree: "Bachelor of Technology (B.Tech) – Computer Engineering",
-    institution: "Indus University, Ahmedabad",
-    period: "2023 – 2027",
-    score: "CGPA: 8.89 / 10 (Current)",
+    id: "house-price-prediction",
+    title: "House Price Prediction",
+    category: "data-science",
+    categoryLabel: "Data Science / Machine Learning",
+    description: "Developed a machine learning project to predict house prices using housing-related features and data analysis techniques.",
+    technologies: ["Python", "Pandas", "NumPy", "Matplotlib", "Scikit-learn"],
+    githubUrl: "https://github.com/Prince-0210/California-Housing-Price-Predictor",
+    detailedOverview: "This project implements an end-to-end data science workflow designed to forecast residential property valuations based on numerical and spatial attributes such as median income, total rooms, house age, and proximity metrics. The workflow includes in-depth Exploratory Data Analysis (EDA), distribution normalization, outlier handling, and regression modeling evaluated using standardized error metrics.",
     highlights: [
-      "Rigorous Analytical Coursework: Database Management Systems (DBMS), Data Mining, Data Visualization, Probability & Statistics, Machine Learning, Data Structures & Algorithms",
-      "Lead Analyst for Ahmedabad Smart City Mobility telemetry project and California Real Estate pricing pipeline",
-      "Consistently maintaining top academic honors ranking in engineering batch"
+      "Conducted comprehensive Exploratory Data Analysis (EDA) on multi-feature housing records",
+      "Handled skewed feature distributions and cleaned anomalous data points",
+      "Engineered derived features to capture property density and space efficiency",
+      "Trained and evaluated regression algorithms using Scikit-learn with quantitative metrics",
+      "Visualized feature correlations and residual distributions using Matplotlib"
     ]
   },
   {
-    degree: "Higher Secondary Certificate (HSC) – Class XII (Science Stream)",
-    institution: "Central Board of Secondary Education (CBSE)",
-    period: "2021 – 2023",
-    score: "Percentage: 71.8%",
+    id: "movie-ticket-booking",
+    title: "Movie Ticket Booking System",
+    category: "flutter",
+    categoryLabel: "Flutter / Application Development",
+    description: "Developed a movie ticket booking application with movie listings, user-friendly navigation, and an interactive booking experience.",
+    technologies: ["Flutter", "Dart", "Android Studio"],
+    githubUrl: "https://github.com/Prince-0210",
+    detailedOverview: "A mobile application engineered with Flutter and Dart providing an intuitive cinema ticketing interface. The app provides structured movie categorization, dynamic seat selection matrices, real-time ticket price calculations, and seamless multi-screen navigation designed for both Android and iOS devices.",
     highlights: [
-      "Rigorous core curriculum in Advanced Mathematics, Statistics, Physics, and Computer Science"
+      "Built clean, modular Flutter widgets adhering to responsive mobile UI principles",
+      "Implemented an interactive visual seating grid allowing users to select and reserve seats",
+      "Managed application state across movie selection, time slots, and checkout stages",
+      "Designed user-friendly navigation with responsive screen transitions"
     ]
   },
   {
-    degree: "Secondary School Certificate (SSC) – Class X",
-    institution: "Central Board of Secondary Education (CBSE)",
-    period: "Completed 2021",
-    score: "Percentage: 83.60%",
+    id: "smart-city-mobility",
+    title: "AI-Powered Smart City Mobility and Safety Platform",
+    category: "ai",
+    categoryLabel: "AI / Smart City",
+    description: "An intelligent mobility platform designed to improve transportation management, route optimization, predictive arrival estimation, and passenger safety.",
+    technologies: ["Python", "Machine Learning", "Data Analytics", "Smart Mobility"],
+    keyFeatures: [
+      "Intelligent route recommendations.",
+      "Predictive arrival estimation.",
+      "Smart mobility management.",
+      "Safety and emergency mechanisms."
+    ],
+    githubUrl: "https://github.com/Prince-0210",
+    detailedOverview: "An integrated smart city concept addressing urban transport friction and commuter safety. The platform analyzes multimodal transit streams—including buses, metro corridors, and passenger volume data—to deliver optimized route alternatives, predict arrival times under congestion, and provide safety-conscious commuter alerting mechanisms.",
     highlights: [
-      "Distinction in Mathematics and Science foundations"
+      "Conceptualized a unified four-layer architecture for multimodal city transit intelligence",
+      "Designed predictive arrival time models leveraging live traffic and historical schedules",
+      "Formulated passenger overcrowding alerts based on simulated sensor and ridership data",
+      "Outlined authority dashboard workflows for emergency dispatching and route diversion"
+    ]
+  },
+  {
+    id: "full-stack-web-project",
+    title: "Full-Stack Web Development Project",
+    category: "full-stack",
+    categoryLabel: "Full-Stack Development",
+    description: "A full-stack web application demonstrating frontend development, backend functionality, database integration, and responsive UI design.",
+    technologies: ["HTML", "CSS", "JavaScript", "React", "Node.js", "Express.js", "MongoDB"],
+    githubUrl: "https://github.com/Prince-0210",
+    detailedOverview: "A complete MERN-stack web application engineered from the ground up to showcase cohesive client-server communication, database modeling, and clean UI responsiveness. The system integrates secure RESTful API endpoints with MongoDB persistence and a reactive frontend built with React.",
+    highlights: [
+      "Engineered decoupled client-server architecture with Node.js and Express REST APIs",
+      "Designed normalized MongoDB schemas with Mongoose data modeling",
+      "Constructed modular React components with state management and form validation",
+      "Implemented responsive layouts ensuring optimal viewing across mobile and desktop devices"
     ]
   }
 ];
 
-export const CERTIFICATIONS = [
+export const CERTIFICATIONS: Certification[] = [
   {
-    title: "AWS Academy Graduate – Machine Learning for Natural Language Processing",
-    issuer: "Amazon Web Services (AWS)",
-    date: "2024",
-    badgeCode: "Badge20260902-20-pr4184",
-    description: "Cloud-native data pipelines, transformer architectures, NLP model evaluation, and machine learning infrastructure on AWS."
-  },
-  {
-    title: "Full Stack Web Development Professional Certification",
+    id: "udemy-full-stack-web",
+    title: "Full Stack Web Development",
     issuer: "Udemy",
-    date: "2024",
-    badgeCode: "UC-WebDev",
-    description: "Database-driven web application architecture, REST API design, MongoDB data modeling, and client-side visualization."
+    credentialUrl: "#certifications",
+    description: "Comprehensive training covering full-stack web engineering including semantic HTML5, modern CSS3 styling, JavaScript ES6+, React.js component architecture, Node.js backend development, Express.js REST APIs, and MongoDB database integration.",
+    skillsLearned: ["HTML5", "CSS3", "JavaScript", "React.js", "Node.js", "Express.js", "MongoDB"]
   },
   {
-    title: "Full Stack Flutter Mobile Development Certification",
-    issuer: "Indus University",
-    date: "2024",
-    badgeCode: "IU-Flutter-Dev",
-    description: "State management, real-time Firebase cloud database synchronization, and cross-platform mobile UI engineering."
+    id: "udemy-flutter-dev",
+    title: "Full Stack Flutter Development",
+    issuer: "Udemy",
+    credentialUrl: "#certifications",
+    description: "In-depth specialization in cross-platform mobile application engineering using Google's Flutter framework and Dart language. Covered reactive state management, mobile UI design, REST API consumption, and application compilation in Android Studio.",
+    skillsLearned: ["Flutter", "Dart", "Android Studio", "State Management", "Cross-Platform UI"]
+  }
+];
+
+export const EDUCATION = [
+  {
+    degree: "Computer Engineering",
+    institution: "Indus University, Ahmedabad",
+    duration: "2023 – 2027",
+    highlights: [
+      "Rigorous coursework covering Data Structures & Algorithms, Database Management Systems (DBMS), Data Mining, Probability & Statistics, and Machine Learning",
+      "Hands-on project work in data analysis, full-stack systems, and cross-platform mobile engineering",
+      "Active participant in technical problem-solving and software engineering projects"
+    ]
+  }
+];
+
+export const CAREER_JOURNEY: JourneyMilestone[] = [
+  {
+    period: "2023 – Present",
+    title: "Computer Engineering Academic Foundations",
+    subtitle: "Indus University",
+    description: "Focused on core computing fundamentals, algorithmic problem solving, database architecture, and discrete mathematics. Developed a strong foundation in structured software development and analytical thinking.",
+    technologies: ["C", "C++", "Java", "Data Structures", "DBMS", "Discrete Math"]
+  },
+  {
+    period: "2023 – 2024",
+    title: "Data Analytics & Exploratory Data Science",
+    subtitle: "Self-Driven & Project Milestones",
+    description: "Mastered data cleaning, manipulation, and statistical exploratory analysis using Python (Pandas, NumPy) and SQL. Built machine learning models for housing regression and predictive classification.",
+    technologies: ["Python", "SQL", "Pandas", "NumPy", "Scikit-Learn", "Matplotlib", "Excel"]
+  },
+  {
+    period: "2024",
+    title: "Full-Stack Web & Cross-Platform Development",
+    subtitle: "Udemy Certified Training & Practical Projects",
+    description: "Completed comprehensive certifications in Full-Stack Web Development and Flutter Development. Built responsive web applications and mobile cinema booking systems with persistent databases.",
+    technologies: ["React", "Node.js", "Express.js", "MongoDB", "Flutter", "Dart", "Android Studio"]
+  },
+  {
+    period: "2024 – 2025",
+    title: "Smart Systems, BI & Intelligent Solutions",
+    subtitle: "Advanced Projects & Applied Analytics",
+    description: "Engineered multimodal mobility concepts for smart city transportation, developed interactive Power BI reporting workflows, and refined predictive algorithms for real-world impact.",
+    technologies: ["Power BI", "Smart Mobility", "Predictive Analytics", "System Architecture", "Git/GitHub"]
   }
 ];

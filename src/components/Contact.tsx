@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, MessageSquare, Copy, Check, Sparkles } from 'lucide-react';
+import { Mail, MapPin, Send, Copy, Check, MessageSquare } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { GithubIcon, LinkedinIcon } from './Icons';
 
@@ -12,6 +12,7 @@ export const Contact: React.FC = () => {
   });
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(PERSONAL_INFO.email);
@@ -21,47 +22,59 @@ export const Contact: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
 
-    // Compose mailto as instant direct fallback
-    const mailtoLink = `mailto:${PERSONAL_INFO.email}?subject=${encodeURIComponent(
-      formData.subject || `Portfolio Inquiry from ${formData.name}`
+    // Validation
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      setErrorMessage('Please fill in your Name, Email, and Message.');
+      return;
+    }
+
+    if (!formData.email.includes('@') || !formData.email.includes('.')) {
+      setErrorMessage('Please enter a valid email address.');
+      return;
+    }
+
+    setErrorMessage('');
+
+    // Functional mailto fallback mechanism with complete user context
+    const mailtoUrl = `mailto:${PERSONAL_INFO.email}?subject=${encodeURIComponent(
+      formData.subject.trim() || `Portfolio Inquiry from ${formData.name.trim()}`
     )}&body=${encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      `Name: ${formData.name.trim()}\nEmail: ${formData.email.trim()}\n\nMessage:\n${formData.message.trim()}`
     )}`;
 
-    window.open(mailtoLink, '_blank');
+    window.open(mailtoUrl, '_blank');
     setSubmitted(true);
   };
 
   return (
-    <section id="contact" className="py-24 relative z-10 bg-[#070a12]/80">
+    <section id="contact" className="py-24 relative z-10 bg-[#080B12] border-t border-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-xs font-semibold text-cyan-400 mb-3">
-            <Sparkles className="w-3.5 h-3.5" />
-            Let's Collaborate
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-blue-400 mb-3">
+            <MessageSquare className="w-3.5 h-3.5" />
+            Direct Communication
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Get In <span className="gradient-text">Touch</span>
+            Let's <span className="gradient-text">Work Together</span>
           </h2>
           <p className="text-slate-400 mt-3 text-sm sm:text-base">
-            Whether you have an exciting engineering role, machine learning project, freelance opportunity, or just want to connect — my inbox is always open.
+            Seeking opportunities in Data Analytics, Data Science, and technology-driven software development. Reach out via email, LinkedIn, or the message form below.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 max-w-5xl mx-auto">
           
-          {/* Left Column: Direct Contact Info (5 Cols) */}
+          {/* Left Column: Contact Channels (5 Cols) */}
           <div className="lg:col-span-5 space-y-4">
             
-            {/* Primary Email Card with 1-click Copy */}
+            {/* Direct Email Card with 1-click Copy */}
             <div className="p-5 rounded-2xl bg-[#0c1322] border border-slate-800 hover:border-cyan-500/40 transition">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs uppercase tracking-wider text-slate-400 font-semibold flex items-center gap-2">
-                  <Mail className="w-4 h-4 text-cyan-400" /> Direct Email
+                  <Mail className="w-4 h-4 text-cyan-400" /> Email Address
                 </span>
                 <button
                   onClick={handleCopyEmail}
@@ -87,79 +100,68 @@ export const Contact: React.FC = () => {
               >
                 {PERSONAL_INFO.email}
               </a>
-              <div className="text-xs text-slate-500 mt-1">
-                Alt: {PERSONAL_INFO.altEmail}
-              </div>
             </div>
 
-            {/* Direct Phone & WhatsApp */}
-            <div className="p-5 rounded-2xl bg-[#0c1322] border border-slate-800 hover:border-emerald-500/40 transition">
-              <span className="text-xs uppercase tracking-wider text-slate-400 font-semibold flex items-center gap-2 mb-2">
-                <Phone className="w-4 h-4 text-emerald-400" /> Direct Mobile & WhatsApp
-              </span>
-              <a
-                href={`tel:${PERSONAL_INFO.phone}`}
-                className="text-base font-bold text-white hover:text-emerald-400 transition font-mono block"
-              >
-                {PERSONAL_INFO.phone}
-              </a>
-              <div className="mt-3">
-                <a
-                  href={PERSONAL_INFO.whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-xl bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/25 transition"
-                >
-                  <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
-                  Quick Chat on WhatsApp
-                </a>
-              </div>
-            </div>
-
-            {/* Location & Availability */}
+            {/* Location Card */}
             <div className="p-5 rounded-2xl bg-[#0c1322] border border-slate-800">
               <span className="text-xs uppercase tracking-wider text-slate-400 font-semibold flex items-center gap-2 mb-2">
-                <MapPin className="w-4 h-4 text-purple-400" /> Location & Availability
+                <MapPin className="w-4 h-4 text-indigo-400" /> Location
               </span>
-              <p className="text-sm font-semibold text-white">
+              <p className="text-sm font-bold text-white">
                 {PERSONAL_INFO.location}
               </p>
               <p className="text-xs text-slate-400 mt-1">
-                Open to Full-Time, Internships, Remote, and Relocation roles.
+                Open to remote opportunities and local roles.
               </p>
             </div>
 
-            {/* Social Icons Bar */}
-            <div className="flex gap-3 pt-2">
-              <a
-                href={PERSONAL_INFO.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-xs font-semibold text-slate-300 hover:text-white transition"
-              >
-                <GithubIcon className="w-4 h-4" />
-                GitHub
-              </a>
+            {/* Social Network Links */}
+            <div className="grid grid-cols-2 gap-3 pt-2">
               <a
                 href={PERSONAL_INFO.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-cyan-500/40 text-xs font-semibold text-slate-300 hover:text-cyan-400 transition"
+                className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#0c1322] border border-slate-800 hover:border-cyan-500/40 text-xs font-semibold text-slate-300 hover:text-cyan-400 transition"
               >
                 <LinkedinIcon className="w-4 h-4" />
-                LinkedIn
+                <span>LinkedIn</span>
               </a>
+
+              <a
+                href={PERSONAL_INFO.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#0c1322] border border-slate-800 hover:border-slate-700 text-xs font-semibold text-slate-300 hover:text-white transition"
+              >
+                <GithubIcon className="w-4 h-4" />
+                <span>GitHub</span>
+              </a>
+            </div>
+
+            {/* Career Objective Summary */}
+            <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-xs text-slate-400">
+              <span className="font-semibold text-slate-300 block mb-1">Career Goal:</span>
+              "{PERSONAL_INFO.careerObjective}"
             </div>
 
           </div>
 
-          {/* Right Column: Contact Message Form (7 Cols) */}
+          {/* Right Column: Functional Contact Form (7 Cols) */}
           <div className="lg:col-span-7">
             <form
               onSubmit={handleSubmit}
-              className="p-6 sm:p-8 rounded-2xl bg-[#0c1322] border border-slate-800 relative shadow-xl"
+              className="p-6 sm:p-8 rounded-2xl bg-[#0c1322] border border-slate-800 relative shadow-2xl"
             >
-              <h3 className="text-lg font-bold text-white mb-4">Send a Direct Message</h3>
+              <h3 className="text-lg font-bold text-white mb-2">Send a Message</h3>
+              <p className="text-xs text-slate-400 mb-6">
+                Fills and activates your default mail client directly with your message details.
+              </p>
+
+              {errorMessage && (
+                <div className="mb-4 p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs">
+                  {errorMessage}
+                </div>
+              )}
 
               <div className="space-y-4">
                 <div>
@@ -171,7 +173,7 @@ export const Contact: React.FC = () => {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="e.g. Alex Morgan"
+                    placeholder="e.g. Jordan Lee"
                     className="w-full bg-slate-900/90 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-200 outline-none focus:border-cyan-400 transition"
                   />
                 </div>
@@ -185,7 +187,7 @@ export const Contact: React.FC = () => {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="e.g. alex@company.com"
+                    placeholder="e.g. jordan@example.com"
                     className="w-full bg-slate-900/90 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-200 outline-none focus:border-cyan-400 transition"
                   />
                 </div>
@@ -198,7 +200,7 @@ export const Contact: React.FC = () => {
                     type="text"
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    placeholder="e.g. Software Engineer Role / Project Opportunity"
+                    placeholder="e.g. Opportunity Discussion / Project Inquiry"
                     className="w-full bg-slate-900/90 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-200 outline-none focus:border-cyan-400 transition"
                   />
                 </div>
@@ -212,23 +214,23 @@ export const Contact: React.FC = () => {
                     rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Hi Prins, I'd like to talk about..."
+                    placeholder="Hi Prins, I came across your portfolio and would like to connect regarding..."
                     className="w-full bg-slate-900/90 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-200 outline-none focus:border-cyan-400 transition resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-semibold text-sm shadow-xl shadow-cyan-500/20 transition-all hover:scale-[1.01] active:scale-95"
+                  className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 hover:brightness-110 text-white font-semibold text-sm shadow-xl shadow-blue-500/20 transition-all hover:scale-[1.01] active:scale-95"
                 >
                   <Send className="w-4 h-4" />
-                  Send Message Directly
+                  Send Message (via Mailto)
                 </button>
 
                 {submitted && (
                   <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs flex items-center gap-2 animate-in fade-in">
-                    <Check className="w-4 h-4 text-emerald-400" />
-                    <span>Your mail client has been opened! You can also reach out via WhatsApp anytime.</span>
+                    <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span>Your mail client has been opened with your message. You can also write directly to <strong>{PERSONAL_INFO.email}</strong>.</span>
                   </div>
                 )}
               </div>
