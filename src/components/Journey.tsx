@@ -1,15 +1,23 @@
 import React from 'react';
-import { Route, CheckCircle2, Sparkles, Compass } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Route, Sparkles, Compass } from 'lucide-react';
 import { CAREER_JOURNEY } from '../data/portfolioData';
+import { SpotlightCard } from './SpotlightCard';
 
 export const Journey: React.FC = () => {
   return (
-    <section id="journey" className="py-24 relative z-10 bg-[#080B12] border-t border-slate-900">
+    <section id="journey" className="py-24 relative z-10 bg-[#080B12] border-t border-slate-900/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-xs font-semibold text-cyan-400 mb-3">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-xs font-semibold text-cyan-400 mb-3 shadow-[0_0_15px_rgba(56,189,248,0.1)]">
             <Route className="w-3.5 h-3.5" />
             Milestones & Progression
           </div>
@@ -19,16 +27,23 @@ export const Journey: React.FC = () => {
           <p className="text-slate-400 mt-3 text-sm sm:text-base">
             Key academic milestones, technical development phases, and self-directed engineering initiatives.
           </p>
-        </div>
+        </motion.div>
 
         {/* Timeline Path */}
         <div className="max-w-3xl mx-auto relative border-l-2 border-slate-800 ml-4 sm:ml-auto pl-6 sm:pl-8 space-y-8">
           {CAREER_JOURNEY.map((item, idx) => (
-            <div key={idx} className="relative group">
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              className="relative group"
+            >
               {/* Glowing Timeline Marker */}
-              <div className="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-gradient-to-tr from-blue-500 to-cyan-400 border-4 border-[#080B12] group-hover:scale-125 transition duration-200" />
+              <div className="absolute -left-[31px] sm:-left-[39px] top-3 w-4 h-4 rounded-full bg-gradient-to-tr from-blue-500 to-cyan-400 border-4 border-[#080B12] group-hover:scale-125 transition duration-300 shadow-[0_0_10px_rgba(56,189,248,0.5)]" />
 
-              <div className="p-6 rounded-2xl bg-[#0c1322] border border-slate-800 hover:border-cyan-500/40 transition-all duration-300 shadow-xl">
+              <SpotlightCard className="p-6 sm:p-7 shadow-xl hover:border-cyan-500/40 transition-all duration-300">
                 {/* Period & Subtitle */}
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                   <span className="text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">
@@ -40,7 +55,7 @@ export const Journey: React.FC = () => {
                 </div>
 
                 {/* Milestone Title */}
-                <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-cyan-300 transition mb-2">
+                <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-cyan-300 transition duration-300 mb-2">
                   {item.title}
                 </h3>
 
@@ -60,8 +75,8 @@ export const Journey: React.FC = () => {
                     </span>
                   ))}
                 </div>
-              </div>
-            </div>
+              </SpotlightCard>
+            </motion.div>
           ))}
         </div>
 

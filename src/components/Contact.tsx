@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Mail, MapPin, Send, Copy, Check, MessageSquare } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
+import { SpotlightCard } from './SpotlightCard';
 import { GithubIcon, LinkedinIcon } from './Icons';
 
 export const Contact: React.FC = () => {
@@ -48,12 +50,18 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-24 relative z-10 bg-[#080B12] border-t border-slate-900">
+    <section id="contact" className="py-24 relative z-10 bg-[#080B12] border-t border-slate-900/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-blue-400 mb-3">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-blue-400 mb-3 shadow-[0_0_15px_rgba(59,130,246,0.15)]">
             <MessageSquare className="w-3.5 h-3.5" />
             Direct Communication
           </div>
@@ -63,15 +71,20 @@ export const Contact: React.FC = () => {
           <p className="text-slate-400 mt-3 text-sm sm:text-base">
             Seeking opportunities in Data Analytics, Data Science, and technology-driven software development. Reach out via email, LinkedIn, or the message form below.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 max-w-5xl mx-auto">
           
           {/* Left Column: Contact Channels (5 Cols) */}
-          <div className="lg:col-span-5 space-y-4">
-            
+          <motion.div
+            initial={{ opacity: 0, x: -25 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-5 space-y-4"
+          >
             {/* Direct Email Card with 1-click Copy */}
-            <div className="p-5 rounded-2xl bg-[#0c1322] border border-slate-800 hover:border-cyan-500/40 transition">
+            <SpotlightCard className="p-5 hover:border-cyan-500/40 transition">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs uppercase tracking-wider text-slate-400 font-semibold flex items-center gap-2">
                   <Mail className="w-4 h-4 text-cyan-400" /> Email Address
@@ -100,10 +113,10 @@ export const Contact: React.FC = () => {
               >
                 {PERSONAL_INFO.email}
               </a>
-            </div>
+            </SpotlightCard>
 
             {/* Location Card */}
-            <div className="p-5 rounded-2xl bg-[#0c1322] border border-slate-800">
+            <SpotlightCard className="p-5">
               <span className="text-xs uppercase tracking-wider text-slate-400 font-semibold flex items-center gap-2 mb-2">
                 <MapPin className="w-4 h-4 text-indigo-400" /> Location
               </span>
@@ -113,7 +126,7 @@ export const Contact: React.FC = () => {
               <p className="text-xs text-slate-400 mt-1">
                 Open to remote opportunities and local roles.
               </p>
-            </div>
+            </SpotlightCard>
 
             {/* Social Network Links */}
             <div className="grid grid-cols-2 gap-3 pt-2">
@@ -121,7 +134,7 @@ export const Contact: React.FC = () => {
                 href={PERSONAL_INFO.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#0c1322] border border-slate-800 hover:border-cyan-500/40 text-xs font-semibold text-slate-300 hover:text-cyan-400 transition"
+                className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#0c1322] border border-slate-800 hover:border-cyan-500/40 text-xs font-semibold text-slate-300 hover:text-cyan-400 transition shadow-sm hover:-translate-y-0.5"
               >
                 <LinkedinIcon className="w-4 h-4" />
                 <span>LinkedIn</span>
@@ -131,7 +144,7 @@ export const Contact: React.FC = () => {
                 href={PERSONAL_INFO.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#0c1322] border border-slate-800 hover:border-slate-700 text-xs font-semibold text-slate-300 hover:text-white transition"
+                className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#0c1322] border border-slate-800 hover:border-slate-700 text-xs font-semibold text-slate-300 hover:text-white transition shadow-sm hover:-translate-y-0.5"
               >
                 <GithubIcon className="w-4 h-4" />
                 <span>GitHub</span>
@@ -143,11 +156,16 @@ export const Contact: React.FC = () => {
               <span className="font-semibold text-slate-300 block mb-1">Career Goal:</span>
               "{PERSONAL_INFO.careerObjective}"
             </div>
-
-          </div>
+          </motion.div>
 
           {/* Right Column: Functional Contact Form (7 Cols) */}
-          <div className="lg:col-span-7">
+          <motion.div
+            initial={{ opacity: 0, x: 25 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-7"
+          >
             <form
               onSubmit={handleSubmit}
               className="p-6 sm:p-8 rounded-2xl bg-[#0c1322] border border-slate-800 relative shadow-2xl"
@@ -221,10 +239,11 @@ export const Contact: React.FC = () => {
 
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 hover:brightness-110 text-white font-semibold text-sm shadow-xl shadow-blue-500/20 transition-all hover:scale-[1.01] active:scale-95"
+                  className="w-full group relative flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 text-white font-semibold text-sm shadow-xl shadow-blue-500/20 transition-all duration-300 hover:scale-[1.01] active:scale-95 overflow-hidden"
                 >
-                  <Send className="w-4 h-4" />
-                  Send Message (via Mailto)
+                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                  <Send className="w-4 h-4 relative z-10" />
+                  <span className="relative z-10">Send Message (via Mailto)</span>
                 </button>
 
                 {submitted && (
@@ -235,7 +254,7 @@ export const Contact: React.FC = () => {
                 )}
               </div>
             </form>
-          </div>
+          </motion.div>
 
         </div>
 

@@ -3,6 +3,7 @@ import { CustomCursor } from './components/CustomCursor';
 import { ScrollProgress } from './components/ScrollProgress';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { TechMarquee } from './components/TechMarquee';
 import { About } from './components/About';
 import { Skills } from './components/Skills';
 import { Projects } from './components/Projects';
@@ -27,6 +28,7 @@ export const App: React.FC = () => {
       {/* Main Content Sections */}
       <main className="flex-grow">
         <Hero />
+        <TechMarquee />
         <About />
         <Skills />
         <Projects />
