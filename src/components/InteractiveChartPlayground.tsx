@@ -20,7 +20,7 @@ export const InteractiveChartPlayground: React.FC = () => {
       ],
       metric: "CAGR: +26.8%",
       highlight: "Model forecast matches seasonality with 94.2% test confidence interval.",
-      color: "from-cyan-500 to-blue-500"
+      color: "from-blue-600 to-cyan-500"
     },
     retention: {
       title: "Subscriber Cohort Retention Curve",
@@ -35,7 +35,7 @@ export const InteractiveChartPlayground: React.FC = () => {
       ],
       metric: "Retention Floor: 69%",
       highlight: "Stabilization occurs post-Month 4; proactive onboarding prevents early dropoff.",
-      color: "from-blue-500 to-indigo-500"
+      color: "from-indigo-600 to-blue-500"
     },
     convergence: {
       title: "XGBoost Hyperparameter Loss Curve",
@@ -50,14 +50,14 @@ export const InteractiveChartPlayground: React.FC = () => {
       ],
       metric: "Min RMSE: 0.14",
       highlight: "Early stopping prevents overfitting while maximizing generalized R² score.",
-      color: "from-emerald-500 to-cyan-500"
+      color: "from-emerald-500 to-teal-400"
     }
   };
 
   const current = scenarios[activeScenario];
 
   return (
-    <div className="py-20 relative z-10 bg-white dark:bg-[#070b14]/90 border-t border-slate-200 dark:border-slate-900/80 transition-colors duration-300">
+    <div className="py-24 relative z-10 bg-slate-50/70 dark:bg-[#070b14]/90 border-t border-slate-200 dark:border-slate-900/80 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -84,8 +84,8 @@ export const InteractiveChartPlayground: React.FC = () => {
                 }}
                 className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-300 ${
                   activeScenario === sc
-                    ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-md shadow-blue-500/20 scale-105 border border-cyan-400/40'
-                    : 'bg-slate-100 dark:bg-slate-900/80 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
+                    ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-md shadow-blue-500/25 scale-105 border border-cyan-400/40'
+                    : 'bg-white dark:bg-slate-900/80 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 shadow-sm'
                 }`}
               >
                 {sc === 'revenue'
@@ -99,20 +99,20 @@ export const InteractiveChartPlayground: React.FC = () => {
         </div>
 
         {/* Visualizer Canvas Box */}
-        <div className="max-w-4xl mx-auto p-6 sm:p-8 rounded-2xl bg-slate-50 dark:bg-[#0c1322] border border-slate-200 dark:border-slate-800 shadow-xl relative overflow-hidden">
+        <div className="max-w-4xl mx-auto p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#0c1322] border border-slate-200/90 dark:border-slate-800 shadow-[0_20px_50px_rgba(0,0,0,0.06)] dark:shadow-2xl relative overflow-hidden transition-all">
           {/* Top metadata */}
-          <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-200 dark:border-slate-800">
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-100 dark:border-slate-800">
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">{current.title}</h3>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-blue-100 dark:bg-cyan-500/10 text-blue-700 dark:text-cyan-300 border border-blue-200 dark:border-cyan-500/30">
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-blue-50 dark:bg-cyan-500/10 text-blue-700 dark:text-cyan-300 border border-blue-200 dark:border-cyan-500/30">
                   {current.tag}
                 </span>
               </div>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{current.highlight}</p>
             </div>
             <div className="text-right">
-              <span className="text-xs text-slate-500 uppercase font-mono block">Target Metric</span>
+              <span className="text-xs text-slate-400 uppercase font-mono block">Target Metric</span>
               <span className="text-base font-mono font-bold text-blue-600 dark:text-cyan-400">{current.metric}</span>
             </div>
           </div>
@@ -120,9 +120,9 @@ export const InteractiveChartPlayground: React.FC = () => {
           {/* Bar / Curve Visualizer */}
           <div className="h-60 sm:h-72 flex items-end justify-between gap-3 sm:gap-6 pt-8 pb-4 px-2 sm:px-6 relative">
             {/* Horizontal Grid lines */}
-            <div className="absolute inset-x-0 top-1/4 border-b border-slate-200 dark:border-slate-800/60 pointer-events-none" />
-            <div className="absolute inset-x-0 top-2/4 border-b border-slate-200 dark:border-slate-800/60 pointer-events-none" />
-            <div className="absolute inset-x-0 top-3/4 border-b border-slate-200 dark:border-slate-800/60 pointer-events-none" />
+            <div className="absolute inset-x-0 top-1/4 border-b border-slate-100 dark:border-slate-800/60 pointer-events-none" />
+            <div className="absolute inset-x-0 top-2/4 border-b border-slate-100 dark:border-slate-800/60 pointer-events-none" />
+            <div className="absolute inset-x-0 top-3/4 border-b border-slate-100 dark:border-slate-800/60 pointer-events-none" />
 
             {current.data.map((item, idx) => {
               const heightPct = item.value;
@@ -142,7 +142,7 @@ export const InteractiveChartPlayground: React.FC = () => {
                         initial={{ opacity: 0, y: 10, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 5 }}
-                        className="absolute -top-12 z-20 px-2.5 py-1.5 rounded-lg bg-slate-900 text-white text-[11px] font-mono border border-cyan-500/40 shadow-xl whitespace-nowrap"
+                        className="absolute -top-12 z-20 px-2.5 py-1.5 rounded-lg bg-slate-900 text-white text-[11px] font-mono border border-slate-700 shadow-xl whitespace-nowrap"
                       >
                         {item.sub}
                       </motion.div>
@@ -156,15 +156,15 @@ export const InteractiveChartPlayground: React.FC = () => {
                     animate={{ height: `${heightPct}%` }}
                     transition={{ duration: 0.6, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
                     className={`w-full max-w-[48px] rounded-t-xl bg-gradient-to-t ${current.color} shadow-md transition-all duration-300 relative ${
-                      isHovered ? 'brightness-110 scale-x-105' : 'opacity-85'
+                      isHovered ? 'brightness-110 scale-x-105' : 'opacity-90'
                     }`}
                   >
                     {/* Top glow dot */}
-                    <div className="absolute top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-white/80 shadow-md" />
+                    <div className="absolute top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-white/90 shadow-md" />
                   </motion.div>
 
                   {/* X-axis label */}
-                  <span className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-3 font-semibold">
+                  <span className="text-xs font-mono text-slate-600 dark:text-slate-400 mt-3 font-semibold">
                     {item.label}
                   </span>
                 </div>
@@ -173,7 +173,7 @@ export const InteractiveChartPlayground: React.FC = () => {
           </div>
 
           {/* Footer Insight */}
-          <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+          <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
             <span className="flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-blue-600 dark:bg-cyan-400 animate-pulse" />
               Hover columns for exact statistical values

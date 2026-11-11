@@ -6,11 +6,14 @@
   color-scheme: dark;
 }
 
+html.light {
+  color-scheme: light;
+}
+
 body {
   font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: #080B12;
-  color: #f1f5f9;
   overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 /* Custom Scrollbar */
@@ -18,40 +21,42 @@ body {
   width: 8px;
 }
 
-::-webkit-scrollbar-track {
+html.dark ::-webkit-scrollbar-track {
   background: #080B12;
 }
 
-::-webkit-scrollbar-thumb {
+html.light ::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
   background: #1e293b;
   border-radius: 4px;
 }
 
+html.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #94a3b8;
 }
 
-/* Glassmorphism & Modern Glows */
-.glass-panel {
-  background: rgba(12, 19, 34, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.gradient-text {
+/* Gradient Typography */
+html.dark .gradient-text {
   background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.gradient-text-cyan {
-  background: linear-gradient(135deg, #38bdf8 0%, #60a5fa 100%);
+html.light .gradient-text {
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 40%, #7c3aed 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Aurora background blurs */
+/* Aurora Background Waves */
 @keyframes aurora-drift-1 {
   0%, 100% {
     transform: translate(0px, 0px) scale(1);
@@ -98,26 +103,31 @@ body {
   animation-play-state: paused;
 }
 
-/* Shimmer Button Effect */
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-.shimmer-badge {
-  background: linear-gradient(90deg, rgba(56,189,248,0.1) 0%, rgba(56,189,248,0.3) 50%, rgba(56,189,248,0.1) 100%);
-  background-size: 200% 100%;
-  animation: shimmer 3s infinite;
-}
-
-/* Subtle glowing grid */
-.cyber-grid {
-  background-size: 40px 40px;
+/* Cyber Grids */
+html.dark .cyber-grid {
+  background-size: 36px 36px;
   background-image: 
     linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+html.light .cyber-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(148, 163, 184, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.12) 1px, transparent 1px);
+}
+
+/* Luxury Light Card Shadows */
+html.light .luxury-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+}
+
+html.light .luxury-card:hover {
+  border-color: rgba(96, 165, 250, 0.6);
+  box-shadow: 0 20px 40px -15px rgba(37, 99, 235, 0.12), 0 4px 12px -2px rgba(37, 99, 235, 0.06);
 }

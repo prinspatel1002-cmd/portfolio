@@ -47,7 +47,7 @@ export const PERSONAL_INFO = {
   email: "prinspatel1002@gmail.com",
   github: "https://github.com/Prince-0210",
   githubUsername: "Prince-0210",
-  linkedin: "https://www.linkedin.com/in/prins-patel-39046627b/",
+  linkedin: "https://www.linkedin.com/in/prins-patel-039483313",
   profileImage: "./profile.jpg",
   resumePdf: "./Prins_Patel_Resume.pdf",
   availabilityStatus: "Open to Data Analyst & Engineering Roles",
