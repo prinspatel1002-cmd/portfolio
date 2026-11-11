@@ -43,44 +43,66 @@ html.light ::-webkit-scrollbar-thumb {
   background: #94a3b8;
 }
 
-/* Gradient Typography */
+/* High-Impact Gradient Typography */
 html.dark .gradient-text {
-  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 40%, #c084fc 80%, #38bdf8 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: text-flow 6s linear infinite;
 }
 
 html.light .gradient-text {
-  background: linear-gradient(135deg, #0284c7 0%, #2563eb 40%, #7c3aed 100%);
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 40%, #7c3aed 80%, #0284c7 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: text-flow 6s linear infinite;
+}
+
+@keyframes text-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Aurora Background Waves */
 @keyframes aurora-drift-1 {
   0%, 100% {
-    transform: translate(0px, 0px) scale(1);
+    transform: translate(0px, 0px) scale(1) rotate(0deg);
   }
-  50% {
-    transform: translate(60px, -40px) scale(1.15);
+  33% {
+    transform: translate(80px, -50px) scale(1.2) rotate(15deg);
+  }
+  66% {
+    transform: translate(-40px, 60px) scale(0.9) rotate(-10deg);
   }
 }
 
 @keyframes aurora-drift-2 {
   0%, 100% {
-    transform: translate(0px, 0px) scale(1);
+    transform: translate(0px, 0px) scale(1) rotate(0deg);
   }
-  50% {
-    transform: translate(-50px, 50px) scale(0.9);
+  33% {
+    transform: translate(-70px, 60px) scale(1.15) rotate(-15deg);
+  }
+  66% {
+    transform: translate(50px, -40px) scale(0.85) rotate(10deg);
   }
 }
 
 .animate-aurora-1 {
-  animation: aurora-drift-1 14s ease-in-out infinite;
+  animation: aurora-drift-1 16s ease-in-out infinite;
 }
 
 .animate-aurora-2 {
-  animation: aurora-drift-2 18s ease-in-out infinite;
+  animation: aurora-drift-2 20s ease-in-out infinite;
 }
 
 /* Infinite Marquee */
@@ -96,7 +118,7 @@ html.light .gradient-text {
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 30s linear infinite;
+  animation: marquee 28s linear infinite;
 }
 
 .animate-marquee:hover {
@@ -107,27 +129,139 @@ html.light .gradient-text {
 html.dark .cyber-grid {
   background-size: 36px 36px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
 }
 
 html.light .cyber-grid {
   background-size: 32px 32px;
   background-image: 
-    linear-gradient(to right, rgba(148, 163, 184, 0.12) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(148, 163, 184, 0.12) 1px, transparent 1px);
+    linear-gradient(to right, rgba(148, 163, 184, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.15) 1px, transparent 1px);
 }
 
-/* Luxury Light Card Shadows */
-html.light .luxury-card {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+/* Concentric Radar Rings */
+@keyframes radar-ripple {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
 }
 
-html.light .luxury-card:hover {
-  border-color: rgba(96, 165, 250, 0.6);
-  box-shadow: 0 20px 40px -15px rgba(37, 99, 235, 0.12), 0 4px 12px -2px rgba(37, 99, 235, 0.06);
+.animate-radar-1 {
+  animation: radar-ripple 3.6s cubic-bezier(0.1, 0.2, 0.3, 1) infinite;
+}
+
+.animate-radar-2 {
+  animation: radar-ripple 3.6s cubic-bezier(0.1, 0.2, 0.3, 1) infinite 1.2s;
+}
+
+.animate-radar-3 {
+  animation: radar-ripple 3.6s cubic-bezier(0.1, 0.2, 0.3, 1) infinite 2.4s;
+}
+
+/* Organic 3D Floating Animations */
+@keyframes float-y-1 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(2deg);
+  }
+}
+
+@keyframes float-y-2 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(12px) rotate(-2deg);
+  }
+}
+
+@keyframes float-y-3 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-2.5deg);
+  }
+}
+
+@keyframes float-y-4 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(10px) rotate(2.5deg);
+  }
+}
+
+.animate-float-1 {
+  animation: float-y-1 5s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: float-y-2 6s ease-in-out infinite;
+}
+
+.animate-float-3 {
+  animation: float-y-3 5.5s ease-in-out infinite;
+}
+
+.animate-float-4 {
+  animation: float-y-4 6.5s ease-in-out infinite;
+}
+
+/* Laser Sheen Sweep */
+@keyframes laser-sweep {
+  0% {
+    transform: translateX(-150%) skewX(-25deg);
+  }
+  100% {
+    transform: translateX(250%) skewX(-25deg);
+  }
+}
+
+.laser-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.08),
+    rgba(56, 189, 248, 0.2),
+    rgba(255, 255, 255, 0.08),
+    transparent
+  );
+  transform: translateX(-150%) skewX(-25deg);
+  pointer-events: none;
+}
+
+.group:hover .laser-shine {
+  animation: laser-sweep 1.2s ease-in-out forwards;
+}
+
+/* Pulsing Neon Glow Ring */
+@keyframes neon-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.2), inset 0 0 10px rgba(56, 189, 248, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.5), inset 0 0 20px rgba(56, 189, 248, 0.25);
+  }
+}
+
+.animate-neon-glow {
+  animation: neon-glow-pulse 3s ease-in-out infinite;
 }

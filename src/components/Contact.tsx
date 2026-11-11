@@ -55,10 +55,10 @@ export const Contact: React.FC = () => {
         
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 text-xs font-semibold text-blue-600 dark:text-blue-400 mb-3 shadow-sm">
@@ -77,10 +77,10 @@ export const Contact: React.FC = () => {
           
           {/* Left Column: Contact Channels (5 Cols) */}
           <motion.div
-            initial={{ opacity: 0, x: -25 }}
+            initial={{ opacity: 0, x: -35 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 space-y-4"
           >
             {/* Direct Email Card with 1-click Copy */}
@@ -91,7 +91,7 @@ export const Contact: React.FC = () => {
                 </span>
                 <button
                   onClick={handleCopyEmail}
-                  className="flex items-center gap-1.5 text-[11px] px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition"
+                  className="flex items-center gap-1.5 text-[11px] px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition hover:scale-105 active:scale-95"
                   title="Copy email to clipboard"
                 >
                   {copiedEmail ? (
@@ -134,7 +134,7 @@ export const Contact: React.FC = () => {
                 href={PERSONAL_INFO.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-white dark:bg-[#0c1322] border border-slate-200 dark:border-slate-800 hover:border-blue-400 dark:hover:border-cyan-500/40 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-cyan-400 transition shadow-sm hover:-translate-y-0.5"
+                className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-white dark:bg-[#0c1322] border border-slate-200 dark:border-slate-800 hover:border-blue-400 dark:hover:border-cyan-500/40 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-cyan-400 transition shadow-sm hover:-translate-y-1 hover:scale-105"
               >
                 <LinkedinIcon className="w-4 h-4" />
                 <span>LinkedIn</span>
@@ -144,7 +144,7 @@ export const Contact: React.FC = () => {
                 href={PERSONAL_INFO.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-white dark:bg-[#0c1322] border border-slate-200 dark:border-slate-800 hover:border-slate-400 dark:hover:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition shadow-sm hover:-translate-y-0.5"
+                className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-white dark:bg-[#0c1322] border border-slate-200 dark:border-slate-800 hover:border-slate-400 dark:hover:border-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition shadow-sm hover:-translate-y-1 hover:scale-105"
               >
                 <GithubIcon className="w-4 h-4" />
                 <span>GitHub</span>
@@ -160,15 +160,15 @@ export const Contact: React.FC = () => {
 
           {/* Right Column: Functional Contact Form (7 Cols) */}
           <motion.div
-            initial={{ opacity: 0, x: 25 }}
+            initial={{ opacity: 0, x: 35 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-7"
           >
             <form
               onSubmit={handleSubmit}
-              className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#0c1322] border border-slate-200 dark:border-slate-800 relative shadow-xl"
+              className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#0c1322] border border-slate-200 dark:border-slate-800 relative shadow-xl hover:shadow-2xl transition"
             >
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Send a Message</h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 mb-6">
@@ -242,7 +242,7 @@ export const Contact: React.FC = () => {
                   className="w-full group relative flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 text-white font-semibold text-sm shadow-xl shadow-blue-500/20 transition-all duration-300 hover:scale-[1.01] active:scale-95 overflow-hidden"
                 >
                   <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                  <Send className="w-4 h-4 relative z-10" />
+                  <Send className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
                   <span className="relative z-10">Send Message (via Mailto)</span>
                 </button>
 

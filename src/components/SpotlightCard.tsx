@@ -31,8 +31,8 @@ export const SpotlightCard: React.FC<SpotlightCardProps> = ({
 
   // Dynamic light / dark iridescent spotlight
   const defaultSpotlight = isDark 
-    ? 'rgba(56, 189, 248, 0.12)' 
-    : 'rgba(37, 99, 235, 0.12)';
+    ? 'rgba(56, 189, 248, 0.16)' 
+    : 'rgba(37, 99, 235, 0.14)';
   const activeSpotlight = spotlightColor || defaultSpotlight;
 
   return (
@@ -41,21 +41,24 @@ export const SpotlightCard: React.FC<SpotlightCardProps> = ({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative overflow-hidden rounded-2xl transition-all duration-300 ${
+      className={`group relative overflow-hidden rounded-2xl transition-all duration-300 transform hover:-translate-y-1.5 ${
         isDark
-          ? 'bg-[#0c1322] border border-slate-800/80 shadow-none'
-          : 'bg-white/90 backdrop-blur-xl border border-slate-200/90 shadow-[0_10px_30px_-10px_rgba(15,23,42,0.06)] hover:shadow-[0_20px_40px_-12px_rgba(37,99,235,0.12)] hover:border-blue-300'
+          ? 'bg-[#0c1322] border border-slate-800/80 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.5)] hover:shadow-[0_25px_50px_-12px_rgba(56,189,248,0.15)] hover:border-slate-700'
+          : 'bg-white/95 backdrop-blur-xl border border-slate-200/90 shadow-[0_10px_30px_-10px_rgba(15,23,42,0.06)] hover:shadow-[0_25px_50px_-12px_rgba(37,99,235,0.18)] hover:border-blue-300'
       } ${className}`}
       {...props}
     >
+      {/* High-Tech Laser Sheen Sweep on hover */}
+      <div className="laser-shine" />
+
       {/* Dynamic Cursor Spotlight Overlay */}
       <div
         className="pointer-events-none absolute -inset-px transition-opacity duration-300"
         style={{
           opacity,
           background: isDark
-            ? `radial-gradient(500px circle at ${position.x}px ${position.y}px, ${activeSpotlight}, transparent 80%)`
-            : `radial-gradient(450px circle at ${position.x}px ${position.y}px, rgba(37, 99, 235, 0.12) 0%, rgba(124, 58, 237, 0.08) 50%, transparent 80%)`,
+            ? `radial-gradient(550px circle at ${position.x}px ${position.y}px, ${activeSpotlight}, transparent 80%)`
+            : `radial-gradient(500px circle at ${position.x}px ${position.y}px, rgba(37, 99, 235, 0.15) 0%, rgba(124, 58, 237, 0.08) 50%, transparent 80%)`,
         }}
       />
 
@@ -64,8 +67,8 @@ export const SpotlightCard: React.FC<SpotlightCardProps> = ({
         className="pointer-events-none absolute -inset-px rounded-2xl transition-opacity duration-300"
         style={{
           opacity,
-          background: `radial-gradient(350px circle at ${position.x}px ${position.y}px, ${
-            isDark ? 'rgba(56, 189, 248, 0.4)' : 'rgba(37, 99, 235, 0.45)'
+          background: `radial-gradient(380px circle at ${position.x}px ${position.y}px, ${
+            isDark ? 'rgba(56, 189, 248, 0.5)' : 'rgba(37, 99, 235, 0.55)'
           }, transparent 70%)`,
           mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
           WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',

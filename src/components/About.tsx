@@ -26,10 +26,10 @@ export const About: React.FC = () => {
         
         {/* Section Header with Scroll Reveal */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 text-xs font-semibold text-blue-600 dark:text-blue-400 mb-3 shadow-sm">
@@ -47,15 +47,15 @@ export const About: React.FC = () => {
         {/* Two-Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          {/* Left Column: Visual Highlight Card with Spotlight */}
+          {/* Left Column: Visual Highlight Card with Spotlight & 3D tilt */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            initial={{ opacity: 0, x: -40, scale: 0.95 }}
+            whileInView={{ opacity: 1, x: 0, scale: 1 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 space-y-4"
           >
-            <SpotlightCard className="p-6 sm:p-7 shadow-xl">
+            <SpotlightCard className="p-6 sm:p-7 shadow-xl hover:shadow-2xl">
               <div className="flex items-center gap-3 pb-4 border-b border-slate-100 dark:border-slate-800/80 mb-4">
                 <div className="p-2.5 rounded-xl bg-blue-50 dark:bg-blue-500/15 border border-blue-200 dark:border-blue-500/30 text-blue-600 dark:text-cyan-400">
                   <GraduationCap className="w-6 h-6" />
@@ -83,7 +83,7 @@ export const About: React.FC = () => {
             </SpotlightCard>
 
             {/* Quick Location & Identity Badge */}
-            <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-400 flex items-center justify-between shadow-sm">
+            <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-400 flex items-center justify-between shadow-sm hover:scale-[1.02] transition">
               <span>Primary Focus: <strong>Data Analytics & Software</strong></span>
               <span className="text-blue-600 dark:text-cyan-400 font-mono font-semibold">Gujarat, India</span>
             </div>
@@ -91,10 +91,10 @@ export const About: React.FC = () => {
 
           {/* Right Column: Narrative & 4 Highlight Cards */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            initial={{ opacity: 0, x: 40, scale: 0.95 }}
+            whileInView={{ opacity: 1, x: 0, scale: 1 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-7 space-y-6"
           >
             <div className="space-y-4 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
@@ -106,25 +106,31 @@ export const About: React.FC = () => {
               </p>
             </div>
 
-            {/* 4 Highlight Cards with Spotlight effect */}
+            {/* 4 Highlight Cards with Staggered Spring Reveal */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               {ABOUT_PILLARS.map((pillar, idx) => (
-                <SpotlightCard
+                <motion.div
                   key={idx}
-                  className="p-4 hover:border-blue-400 dark:hover:border-cyan-500/40 transition-all duration-300 group shadow-sm"
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1, type: 'spring', damping: 20 }}
+                  whileHover={{ scale: 1.03 }}
                 >
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 group-hover:scale-110 transition duration-300">
-                      {getPillarIcon(idx)}
+                  <SpotlightCard className="p-4 hover:border-blue-400 dark:hover:border-cyan-500/40 transition-all duration-300 group shadow-sm h-full">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="p-2 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 group-hover:scale-110 group-hover:rotate-6 transition duration-300">
+                        {getPillarIcon(idx)}
+                      </div>
+                      <h3 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-300 transition">
+                        {pillar.title}
+                      </h3>
                     </div>
-                    <h3 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-300 transition">
-                      {pillar.title}
-                    </h3>
-                  </div>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                    {pillar.description}
-                  </p>
-                </SpotlightCard>
+                    <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                      {pillar.description}
+                    </p>
+                  </SpotlightCard>
+                </motion.div>
               ))}
             </div>
           </motion.div>

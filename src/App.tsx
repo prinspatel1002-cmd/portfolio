@@ -4,6 +4,7 @@ import { CustomCursor } from './components/CustomCursor';
 import { ScrollProgress } from './components/ScrollProgress';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { StatsCounter } from './components/StatsCounter';
 import { TechMarquee } from './components/TechMarquee';
 import { About } from './components/About';
 import { Skills } from './components/Skills';
@@ -22,7 +23,7 @@ export const App: React.FC = () => {
         {/* Scroll Progress Bar at the very top */}
         <ScrollProgress />
 
-        {/* Desktop-only Custom Animated Follower Cursor */}
+        {/* Desktop-only Custom Animated Follower Cursor with Trail Sparkles */}
         <CustomCursor />
 
         {/* Sticky Navigation Bar with Light/Dark Mode Switcher */}
@@ -31,6 +32,7 @@ export const App: React.FC = () => {
         {/* Main Content Sections */}
         <main className="flex-grow">
           <Hero />
+          <StatsCounter />
           <TechMarquee />
           <About />
           <Skills />

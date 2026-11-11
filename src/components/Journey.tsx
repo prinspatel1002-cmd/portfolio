@@ -11,10 +11,10 @@ export const Journey: React.FC = () => {
         
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-cyan-500/10 border border-blue-200 dark:border-cyan-500/20 text-xs font-semibold text-blue-600 dark:text-cyan-400 mb-3 shadow-sm">
@@ -30,20 +30,28 @@ export const Journey: React.FC = () => {
         </motion.div>
 
         {/* Timeline Path */}
-        <div className="max-w-3xl mx-auto relative border-l-2 border-slate-200 dark:border-slate-800 ml-4 sm:ml-auto pl-6 sm:pl-8 space-y-8">
+        <div className="max-w-3xl mx-auto relative border-l-2 border-blue-500/30 dark:border-cyan-500/30 ml-4 sm:ml-auto pl-6 sm:pl-8 space-y-8">
           {CAREER_JOURNEY.map((item, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, x: 20 }}
+              initial={{ opacity: 0, x: 35 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              transition={{
+                duration: 0.6,
+                delay: idx * 0.12,
+                type: 'spring',
+                damping: 20,
+              }}
+              whileHover={{ x: 6 }}
               className="relative group"
             >
-              {/* Glowing Timeline Marker */}
-              <div className="absolute -left-[31px] sm:-left-[39px] top-3 w-4 h-4 rounded-full bg-gradient-to-tr from-blue-500 to-cyan-400 border-4 border-slate-100 dark:border-[#080B12] group-hover:scale-125 transition duration-300 shadow-md" />
+              {/* Glowing Timeline Marker with Ping Halo */}
+              <div className="absolute -left-[31px] sm:-left-[39px] top-3.5 w-4 h-4 rounded-full bg-gradient-to-tr from-blue-600 via-indigo-600 to-cyan-400 border-4 border-white dark:border-[#080B12] group-hover:scale-150 transition-all duration-300 shadow-md">
+                <span className="absolute -inset-1 rounded-full bg-cyan-400 opacity-0 group-hover:opacity-75 animate-ping" />
+              </div>
 
-              <SpotlightCard className="p-6 sm:p-7 shadow-lg hover:border-blue-400 dark:hover:border-cyan-500/40 transition-all duration-300">
+              <SpotlightCard className="p-6 sm:p-7 shadow-lg hover:shadow-2xl hover:border-blue-400 dark:hover:border-cyan-500/40 transition-all duration-300">
                 {/* Period & Subtitle */}
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                   <span className="text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-cyan-500/10 text-blue-700 dark:text-cyan-300 border border-blue-200 dark:border-cyan-500/20">

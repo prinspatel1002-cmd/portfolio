@@ -30,10 +30,10 @@ export const Skills: React.FC = () => {
         
         {/* Section Header with Scroll Reveal */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="text-center max-w-3xl mx-auto mb-14"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-cyan-500/10 border border-blue-200 dark:border-cyan-500/20 text-xs font-semibold text-blue-600 dark:text-cyan-400 mb-3 shadow-sm">
@@ -47,15 +47,15 @@ export const Skills: React.FC = () => {
             Categorized toolkit developed through Computer Engineering coursework, applied projects, and hands-on software development.
           </p>
 
-          {/* Category Tabs */}
+          {/* Category Tabs with Animated Spring Pill */}
           <div className="flex flex-wrap items-center justify-center gap-2 mt-8">
             {SKILL_CATEGORIES.map((cat, idx) => (
               <button
                 key={idx}
                 onClick={() => setActiveTab(idx)}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 ${
+                className={`relative flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 ${
                   activeTab === idx
-                    ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-md shadow-blue-500/25 border border-cyan-400/30 scale-105'
+                    ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-lg shadow-blue-500/25 border border-cyan-400/30 scale-105'
                     : 'bg-white dark:bg-slate-900/80 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 shadow-sm'
                 }`}
               >
@@ -76,31 +76,57 @@ export const Skills: React.FC = () => {
             </span>
           </div>
 
-          {/* Technology Cards Grid with Animation */}
+          {/* Technology Cards Grid with Staggered Spring Pop-in */}
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.35 }}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.05,
+                  },
+                },
+                exit: { opacity: 0, transition: { duration: 0.2 } },
+              }}
               className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5"
             >
               {SKILL_CATEGORIES[activeTab].skills.map((skill, sIdx) => (
-                <SpotlightCard
+                <motion.div
                   key={sIdx}
-                  className="p-4 hover:border-blue-400 dark:hover:border-cyan-500/40 transition-all duration-300 group flex flex-col justify-between shadow-sm"
+                  variants={{
+                    hidden: { opacity: 0, y: 20, scale: 0.9 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      scale: 1,
+                      transition: {
+                        type: 'spring',
+                        stiffness: 280,
+                        damping: 22,
+                      },
+                    },
+                  }}
+                  whileHover={{ scale: 1.04, y: -4 }}
                 >
-                  <div className="flex items-start justify-between gap-2 mb-2">
-                    <span className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-300 transition">
-                      {skill.name}
-                    </span>
-                    <CheckCircle2 className="w-4 h-4 text-blue-600 dark:text-cyan-400 shrink-0 mt-0.5 group-hover:scale-110 transition" />
-                  </div>
-                  <div className="text-[11px] text-slate-500 dark:text-slate-400 font-mono mt-1 pt-2 border-t border-slate-100 dark:border-slate-800/60">
-                    {skill.tag}
-                  </div>
-                </SpotlightCard>
+                  <SpotlightCard
+                    className="p-4 hover:border-blue-400 dark:hover:border-cyan-500/40 transition-all duration-300 group flex flex-col justify-between shadow-sm h-full"
+                  >
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <span className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-300 transition">
+                        {skill.name}
+                      </span>
+                      <CheckCircle2 className="w-4 h-4 text-blue-600 dark:text-cyan-400 shrink-0 mt-0.5 group-hover:scale-125 group-hover:rotate-12 transition-transform duration-300" />
+                    </div>
+                    <div className="text-[11px] text-slate-500 dark:text-slate-400 font-mono mt-1 pt-2 border-t border-slate-100 dark:border-slate-800/60">
+                      {skill.tag}
+                    </div>
+                  </SpotlightCard>
+                </motion.div>
               ))}
             </motion.div>
           </AnimatePresence>
@@ -109,12 +135,13 @@ export const Skills: React.FC = () => {
         {/* Overview of all 5 categories at a glance */}
         <div className="mt-16 pt-12 border-t border-slate-200 dark:border-slate-900/80 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 text-center">
           {SKILL_CATEGORIES.map((cat, idx) => (
-            <div
+            <motion.div
               key={idx}
+              whileHover={{ scale: 1.05, y: -3 }}
               onClick={() => setActiveTab(idx)}
               className={`p-3 rounded-xl border cursor-pointer transition duration-200 text-xs ${
                 activeTab === idx
-                  ? 'bg-blue-50 dark:bg-blue-500/10 border-blue-300 dark:border-cyan-500/40 text-blue-700 dark:text-cyan-300 font-bold'
+                  ? 'bg-blue-50 dark:bg-blue-500/10 border-blue-300 dark:border-cyan-500/40 text-blue-700 dark:text-cyan-300 font-bold shadow-md'
                   : 'bg-white dark:bg-slate-900/40 border-slate-200 dark:border-slate-800/60 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800/40'
               }`}
             >
@@ -122,7 +149,7 @@ export const Skills: React.FC = () => {
               <div className="text-[10px] text-slate-500 font-mono mt-0.5">
                 {cat.skills.length} tools
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
