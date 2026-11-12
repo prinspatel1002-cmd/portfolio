@@ -26,6 +26,9 @@ export interface Certification {
   credentialUrl: string;
   description: string;
   skillsLearned: string[];
+  certificateImage?: string;
+  issueDate?: string;
+  organization?: string;
 }
 
 export interface JourneyMilestone {
@@ -218,16 +221,20 @@ export const CERTIFICATIONS: Certification[] = [
     title: "Full Stack Web Development",
     issuer: "Udemy",
     credentialUrl: "#certifications",
+    issueDate: "2024",
     description: "Comprehensive training covering full-stack web engineering including semantic HTML5, modern CSS3 styling, JavaScript ES6+, React.js component architecture, Node.js backend development, Express.js REST APIs, and MongoDB database integration.",
     skillsLearned: ["HTML5", "CSS3", "JavaScript", "React.js", "Node.js", "Express.js", "MongoDB"]
   },
   {
-    id: "udemy-flutter-dev",
-    title: "Full Stack Flutter Development",
-    issuer: "Udemy",
-    credentialUrl: "#certifications",
-    description: "In-depth specialization in cross-platform mobile application engineering using Google's Flutter framework and Dart language. Covered reactive state management, mobile UI design, REST API consumption, and application compilation in Android Studio.",
-    skillsLearned: ["Flutter", "Dart", "Android Studio", "State Management", "Cross-Platform UI"]
+    id: "indus-flutter-dev",
+    title: "Full Stack Mobile App Development using Flutter",
+    issuer: "Indus University",
+    organization: "Department of Computer Science & Engineering, IITE",
+    credentialUrl: "./certificates/flutter_certificate.jpg",
+    certificateImage: "./certificates/flutter_certificate.jpg",
+    issueDate: "Dec 8 – 18, 2025",
+    description: "Certification course organized by the Department of Computer Science & Engineering, IITE, Indus University. Intensive practical training in cross-platform mobile app development with Flutter & Dart, covering state management, reactive UI, and native mobile compilation in Android Studio.",
+    skillsLearned: ["Flutter", "Dart", "Android Studio", "State Management", "Cross-Platform UI", "Mobile App Development"]
   }
 ];
 
