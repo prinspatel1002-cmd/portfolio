@@ -218,12 +218,14 @@ export const PROJECTS: Project[] = [
 export const CERTIFICATIONS: Certification[] = [
   {
     id: "udemy-full-stack-web",
-    title: "Full Stack Web Development",
+    title: "The Complete 2024 Web Development Bootcamp",
     issuer: "Udemy",
-    credentialUrl: "#certifications",
-    issueDate: "2024",
-    description: "Comprehensive training covering full-stack web engineering including semantic HTML5, modern CSS3 styling, JavaScript ES6+, React.js component architecture, Node.js backend development, Express.js REST APIs, and MongoDB database integration.",
-    skillsLearned: ["HTML5", "CSS3", "JavaScript", "React.js", "Node.js", "Express.js", "MongoDB"]
+    organization: "Dr. Angela Yu • Lead Instructor (61.5 Total Hours)",
+    credentialUrl: "https://ude.my/UC-994f44da-d7da-436c-97aa-a15e1c45ad11",
+    certificateImage: "./certificates/udemy_web_dev_certificate.jpg",
+    issueDate: "July 8, 2024",
+    description: "Comprehensive 61.5-hour engineering curriculum covering full-stack web architecture. Built extensive frontend and backend projects mastering modern HTML5/CSS3, JavaScript ES6+, React.js component design, Node.js runtime, Express REST APIs, database integration (PostgreSQL, MongoDB), and production deployment.",
+    skillsLearned: ["React.js", "Node.js", "Express.js", "MongoDB", "JavaScript ES6+", "RESTful APIs", "HTML5 & CSS3", "Git & GitHub"]
   },
   {
     id: "indus-flutter-dev",

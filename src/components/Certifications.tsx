@@ -117,7 +117,7 @@ export const Certifications: React.FC = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/30 to-transparent flex items-end justify-between p-3">
                         <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/90 text-white text-[11px] font-semibold backdrop-blur-sm shadow-sm">
                           <CheckCircle2 className="w-3.5 h-3.5" />
-                          Official University Certificate
+                          {cert.issuer === 'Indus University' ? 'Official University Certificate' : 'Udemy Verified • 61.5 Hours'}
                         </span>
                         <span className="inline-flex items-center gap-1 text-[11px] text-white font-medium bg-black/60 px-2 py-0.5 rounded backdrop-blur-sm">
                           <ZoomIn className="w-3 h-3" /> Click to Inspect
@@ -321,17 +321,30 @@ export const Certifications: React.FC = () => {
               </div>
 
               {/* Modal Bottom Bar / Actions */}
-              <div className="flex items-center justify-between px-5 sm:px-6 py-3.5 border-t border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60">
-                <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-mono font-medium flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  Verified Credential
-                </span>
+              <div className="flex flex-wrap items-center justify-between gap-3 px-5 sm:px-6 py-3.5 border-t border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60">
+                <div className="flex items-center gap-2.5">
+                  <span className="text-[11px] text-emerald-600 dark:text-emerald-400 font-mono font-medium flex items-center gap-1.5">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    Verified Credential
+                  </span>
+                  {activeCert.credentialUrl && activeCert.credentialUrl.startsWith('http') && (
+                    <a
+                      href={activeCert.credentialUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-violet-50 dark:bg-violet-950/40 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-800 text-[11px] font-mono hover:bg-violet-100 dark:hover:bg-violet-900/60 transition shadow-sm"
+                    >
+                      <ExternalLink className="w-3 h-3" />
+                      Verify on Udemy
+                    </a>
+                  )}
+                </div>
 
                 <div className="flex items-center gap-2">
                   {activeCert.certificateImage && (
                     <a
                       href={activeCert.certificateImage}
-                      download="Prins_Patel_Flutter_Certificate.jpg"
+                      download={activeCert.id === 'udemy-full-stack-web' ? 'Prins_Patel_Udemy_Web_Development_Bootcamp.jpg' : 'Prins_Patel_Indus_University_Flutter_Certificate.jpg'}
                       className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-xs font-semibold transition shadow-sm"
                     >
                       <Download className="w-3.5 h-3.5" />
